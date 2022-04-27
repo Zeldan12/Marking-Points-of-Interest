@@ -1,4 +1,4 @@
-package com.example.markingpointsofinterest;
+package ipl.ei.mpoi;
 
 import org.junit.Test;
 
