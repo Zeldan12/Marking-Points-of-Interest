@@ -28,6 +28,9 @@ android {
     buildFeatures {
         viewBinding true
     }
+    task wrapper(type: Wrapper){
+        gradleVersion = '7.2'
+    }
 }
 
 dependencies {
@@ -37,7 +40,10 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation 'androidx.navigation:navigation-fragment:2.4.2'
     implementation 'androidx.navigation:navigation-ui:2.4.2'
+<<<<<<< HEAD
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
+=======
+>>>>>>> fe6e962aa5abbc2dffb27a37166449ef9ff56071
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
