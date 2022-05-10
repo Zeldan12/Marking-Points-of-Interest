@@ -82,8 +82,6 @@ public class SecondFragment extends Fragment implements OnMapReadyCallback {
         LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             Toast.makeText(getActivity(), "Location Pemission is necessary!", Toast.LENGTH_SHORT).show();
-            NavHostFragment.findNavController(SecondFragment.this)
-                    .navigate(R.id.action_SecondFragment_to_FirstFragment);
             return;
         }
 
@@ -108,8 +106,6 @@ public class SecondFragment extends Fragment implements OnMapReadyCallback {
         }
         Toast.makeText(getActivity(), "Location Pemission is necessary!", Toast.LENGTH_SHORT).show();
 
-        NavHostFragment.findNavController(SecondFragment.this)
-                .navigate(R.id.action_SecondFragment_to_FirstFragment);
     }
 
     private LocationListener locationListener = new LocationListener() {

@@ -17,21 +17,21 @@
             android:layout_height="66dp"
             android:layout_marginTop="208dp"
             android:text="MPoI"
-            android:textSize="50"
+            android:textSize="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/iniciar"
             android:layout_width="307dp"
             android:layout_height="64dp"
             android:layout_marginStart="80dp"
             android:layout_marginEnd="80dp"
             android:layout_marginBottom="30dp"
             android:text="Iniciar"
-            android:textSize="25"
+            android:textSize="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
