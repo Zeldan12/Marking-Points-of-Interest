@@ -32,13 +32,65 @@
 
         <EditText
             android:id="@+id/editTextTextPersonName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginEnd="70dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="Name"
-            tools:layout_editor_absoluteX="68dp"
-            tools:layout_editor_absoluteY="364dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.523"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="461dp" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="250dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginEnd="70dp"
+            android:text=" Latitude:"
+            android:textAlignment="viewStart"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="70dp" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="250dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginEnd="70dp"
+            android:text="Longitude:"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="149dp" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="250dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginEnd="70dp"
+            android:text="Altitude"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="243dp" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginEnd="70dp"
+            android:entries="@array/categorias"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="356dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

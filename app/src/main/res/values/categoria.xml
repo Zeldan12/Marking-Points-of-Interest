@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="categorias">
+        <item>Cadeira</item>
+        <item>Mesa</item>
+        <item>Árvore</item>
+        <item>Banco</item>
+        <item>Candeeiro</item>
+        <item>Poste</item>
+        <item>Planta</item>
+        <item>Caixote do lixo</item>
+    </string-array>
+</resources>

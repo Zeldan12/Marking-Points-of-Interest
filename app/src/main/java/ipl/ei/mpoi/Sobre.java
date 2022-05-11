@@ -10,30 +10,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import ipl.ei.mpoi.databinding.FragmentFirstBinding;
-import ipl.ei.mpoi.databinding.FragmentPaginaInicalBinding;
+import ipl.ei.mpoi.databinding.FragmentMenuBinding;
+import ipl.ei.mpoi.databinding.FragmentSobreBinding;
 
-public class PaginaInical extends Fragment {
+public class Sobre extends Fragment {
 
-    private @NonNull FragmentPaginaInicalBinding binding;
+    private @NonNull FragmentSobreBinding binding;
 
-    public PaginaInical() {
+    public Sobre() {
         // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentPaginaInicalBinding.inflate(inflater, container, false);
+        binding = FragmentSobreBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.iniciar.setOnClickListener(new View.OnClickListener() {
+        binding.ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(PaginaInical.this).navigate(R.id.action_paginaInical_to_menu);
+                NavHostFragment.findNavController(Sobre.this).navigate(R.id.action_sobre2_to_menu);
             }
         });
     }

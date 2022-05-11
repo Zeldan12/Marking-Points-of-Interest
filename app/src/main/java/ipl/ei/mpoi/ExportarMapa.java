@@ -10,30 +10,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import ipl.ei.mpoi.databinding.FragmentFirstBinding;
+import ipl.ei.mpoi.databinding.FragmentExportarMapaBinding;
+import ipl.ei.mpoi.databinding.FragmentMenuBinding;
 import ipl.ei.mpoi.databinding.FragmentPaginaInicalBinding;
 
-public class PaginaInical extends Fragment {
+public class ExportarMapa extends Fragment {
 
-    private @NonNull FragmentPaginaInicalBinding binding;
+    private @NonNull FragmentExportarMapaBinding binding;
 
-    public PaginaInical() {
+    public ExportarMapa() {
         // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentPaginaInicalBinding.inflate(inflater, container, false);
+        binding = FragmentExportarMapaBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.iniciar.setOnClickListener(new View.OnClickListener() {
+        binding.button7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(PaginaInical.this).navigate(R.id.action_paginaInical_to_menu);
+                NavHostFragment.findNavController(ExportarMapa.this).navigate(R.id.action_exportarMapa2_to_menu);
             }
         });
     }
