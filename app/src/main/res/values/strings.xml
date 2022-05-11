@@ -9,11 +9,6 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-<<<<<<< HEAD
-=======
-
-
->>>>>>> da4ad32d9c993e51315c061b965d1d87c20bf36c
     <string name="add_point">Add Point</string>
 
     <!-- TODO: Remove or change this placeholder text -->
