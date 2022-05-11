@@ -3,14 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.256" />
         <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/activity_map.xml" value="0.264" />
         <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/content_main.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/fragment_blank.xml" value="0.2604166666666667" />
         <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/fragment_first.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/fragment_gravar_mapa.xml" value="0.14375" />
         <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/fragment_maps.xml" value="0.2" />
+        <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/fragment_marcar_ponto.xml" value="0.14375" />
+        <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/fragment_menu.xml" value="0.14375" />
         <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/fragment_new_point.xml" value="0.4" />
+        <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/fragment_pagina_inical.xml" value="0.14375" />
         <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/fragment_second.xml" value="0.176" />
         <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/google_maps_api.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/menu/menu_main.xml" value="0.27447916666666666" />
       </map>
     </option>
   </component>

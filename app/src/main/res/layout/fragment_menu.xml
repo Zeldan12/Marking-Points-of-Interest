@@ -17,7 +17,7 @@
             android:layout_marginStart="80dp"
             android:layout_marginEnd="80dp"
             android:text="Criar Mapa"
-            android:textSize="20"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="95dp" />
@@ -29,7 +29,7 @@
             android:layout_marginStart="80dp"
             android:layout_marginEnd="80dp"
             android:text="Editar Mapa"
-            android:textSize="20"
+            android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="191dp" />
@@ -41,7 +41,7 @@
             android:layout_marginStart="80dp"
             android:layout_marginEnd="80dp"
             android:text="Exportar Mapa"
-            android:textSize="20"
+            android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="283dp" />
@@ -53,7 +53,7 @@
             android:layout_marginStart="80dp"
             android:layout_marginEnd="80dp"
             android:text="Sobre"
-            android:textSize="20"
+            android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="375dp" />

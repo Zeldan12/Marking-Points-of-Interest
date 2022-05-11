@@ -77,6 +77,17 @@
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
         <EditText
+            android:id="@+id/editTextAltitude"
+            android:layout_width="282dp"
+            android:layout_height="66dp"
+            android:layout_marginStart="64dp"
+            android:editable="true"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="625dp" />
+
+        <EditText
             android:id="@+id/editTextLongitude"
             android:layout_width="282dp"
             android:layout_height="59dp"

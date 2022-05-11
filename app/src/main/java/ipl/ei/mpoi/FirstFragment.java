@@ -10,6 +10,12 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import org.xml.sax.SAXException;
+
+import java.io.IOException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
 import ipl.ei.mpoi.databinding.FragmentFirstBinding;
 import ipl.ei.mpoi.objects.PointMap;
 
@@ -18,11 +24,8 @@ public class FirstFragment extends Fragment {
     private FragmentFirstBinding binding;
 
     @Override
-    public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState
     ) {
-
         binding = FragmentFirstBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
@@ -37,6 +40,16 @@ public class FirstFragment extends Fragment {
                 changeToMapActivity();
             }
         });
+        binding.button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    teste();
+                } catch (ParserConfigurationException | IOException | SAXException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public void changeToMapActivity(){
@@ -49,6 +62,13 @@ public class FirstFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private void teste() throws ParserConfigurationException, IOException, SAXException {
+        PointMap map = new PointMap(this.getActivity().getApplicationContext().getExternalMediaDirs()[0], "PointMap-Mapa1.xml");
+        Intent i = new Intent(this.getActivity(), MapActivity.class);
+        i.putExtra("PointMap",map);
+        startActivity(i);
     }
 
 }
