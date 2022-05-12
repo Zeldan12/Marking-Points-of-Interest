@@ -9,14 +9,17 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import ipl.ei.mpoi.databinding.FragmentExportarMapaBinding;
 import ipl.ei.mpoi.databinding.FragmentMenuBinding;
 import ipl.ei.mpoi.databinding.FragmentPaginaInicalBinding;
+import ipl.ei.mpoi.objects.PointMap;
 
 public class ExportarMapa extends Fragment {
 
-    private @NonNull FragmentExportarMapaBinding binding;
+    private @NonNull
+    FragmentExportarMapaBinding binding;
 
     public ExportarMapa() {
         // Required empty public constructor
@@ -30,7 +33,15 @@ public class ExportarMapa extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ((MainActivity) getActivity()).onFragmentExportarMapaReady();
+        binding.exportarMapList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ((PointMap)parent.getItemAtPosition(position)).toXml(getActivity().getExternalMediaDirs()[0]);
+            }
+        }
 
+        );
         binding.button7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

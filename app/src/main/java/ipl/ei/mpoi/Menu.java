@@ -1,7 +1,13 @@
 package ipl.ei.mpoi;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
@@ -12,6 +18,7 @@ import android.view.ViewGroup;
 
 import ipl.ei.mpoi.databinding.FragmentMenuBinding;
 import ipl.ei.mpoi.databinding.FragmentPaginaInicalBinding;
+import ipl.ei.mpoi.objects.PointMap;
 
 
 public class Menu extends Fragment {
@@ -35,6 +42,13 @@ public class Menu extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        binding.criarMapa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)getActivity()).changeToMapActivity();
+            }
+        });
 
         binding.editarMapa.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,4 +78,6 @@ public class Menu extends Fragment {
             }
         });
     }
+
+
 }

@@ -60,17 +60,41 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_map);
         Intent i = getIntent();
         pointMap = i.getParcelableExtra("PointMap");
-        findViewById(R.id.buttonPrevious).setOnClickListener(v -> {
+        /*findViewById(R.id.buttonPrevious).setOnClickListener(v -> {
             try {
                 test(v);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        });
+        });*/
         requestPermissions(new String[] {Manifest.permission.MANAGE_EXTERNAL_STORAGE},3);
         mapView = (MapView) findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
+        findViewById(R.id.buttonGravar).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeToMainActivity(pointMap);
+            }
+        });
+        findViewById(R.id.buttonPrevious).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeToMainActivity();
+            }
+        });
+    }
+
+    private void changeToMainActivity(){
+        setResult(RESULT_CANCELED);
+        finish();
+    }
+
+    private void changeToMainActivity(PointMap map){
+        Intent i = new Intent(this, MainActivity.class);
+        i.putExtra("PointMap",map);
+        setResult(RESULT_OK, i);
+        finish();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -211,4 +235,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         super.onLowMemory();
         mapView.onLowMemory();
     }
+
+
 }

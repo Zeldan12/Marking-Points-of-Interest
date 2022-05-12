@@ -26,11 +26,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ListView
+            android:id="@+id/exportarMapList"
             android:layout_width="418dp"
             android:layout_height="560dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="27dp"
+            android:divider="@color/black"
+            android:dividerHeight="2dp"
             app:layout_constraintBottom_toTopOf="@+id/button7"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
