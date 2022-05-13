@@ -17,6 +17,7 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Parcelable;
 import android.util.Log;
 import android.util.Xml;
 import android.view.View;
@@ -92,7 +93,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private void changeToMainActivity(PointMap map){
         Intent i = new Intent(this, MainActivity.class);
-        i.putExtra("PointMap",map);
+        i.putExtra("PointMap", (Parcelable) map);
         setResult(RESULT_OK, i);
         finish();
     }
@@ -198,7 +199,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         LatLng latLng = new LatLng(lat, lng);
         String name = ((EditText)findViewById(R.id.editTextName)).getText().toString();
 
-        PointOfInterest newPoint = new PointOfInterest(name,latLng,alt,"category","desc","1");
+        PointOfInterest newPoint = new PointOfInterest(name,latLng.latitude,latLng.longitude,alt,"category","desc","1");
         googleMap.addMarker(new MarkerOptions().position(latLng).title(name));
         pointMap.addPoint(newPoint);
     }

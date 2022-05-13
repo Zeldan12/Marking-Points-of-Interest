@@ -2,6 +2,7 @@ package ipl.ei.mpoi;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,7 +55,7 @@ public class FirstFragment extends Fragment {
 
     public void changeToMapActivity(){
         Intent i = new Intent(this.getActivity(), MapActivity.class);
-        i.putExtra("PointMap",new PointMap("Mapa1"));
+        i.putExtra("PointMap", (Parcelable) new PointMap("Mapa1"));
         startActivity(i);
     }
 
@@ -67,7 +68,7 @@ public class FirstFragment extends Fragment {
     private void teste() throws ParserConfigurationException, IOException, SAXException {
         PointMap map = new PointMap(this.getActivity().getApplicationContext().getExternalMediaDirs()[0], "PointMap-Mapa1.xml");
         Intent i = new Intent(this.getActivity(), MapActivity.class);
-        i.putExtra("PointMap",map);
+        i.putExtra("PointMap", (Parcelable) map);
         startActivity(i);
     }
 

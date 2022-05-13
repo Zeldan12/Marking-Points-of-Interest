@@ -1,9 +1,11 @@
 package ipl.ei.mpoi;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationListener;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -13,8 +15,10 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Parcelable;
 import android.view.View;
 
 import androidx.navigation.NavController;
@@ -33,6 +37,14 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -48,6 +60,28 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         maps = new ArrayList<PointMap>();
+        File file = new File(getFilesDir(),"maps.dat");
+        if(file.isFile()) {
+            try {
+                FileInputStream fis = new FileInputStream(file);
+                BufferedInputStream bis = new BufferedInputStream(fis);
+                ObjectInputStream ois = new ObjectInputStream(bis);
+
+                maps = (ArrayList<PointMap>) ois.readObject();
+
+                ois.close();
+                bis.close();
+                fis.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        }
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -96,14 +130,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void changeToMapActivity(){
         Intent i = new Intent(this, MapActivity.class);
-        i.putExtra("PointMap",new PointMap("Mapa1"));
+        i.putExtra("PointMap", (Parcelable) new PointMap("Mapa1"));
         editMapIndex = -1;
         activityResultLauncher.launch(i);
     }
 
     public void changeToMapActivity(ListView listView){
         Intent i = new Intent(this, MapActivity.class);
-        i.putExtra("PointMap",(PointMap)listView.getSelectedItem());
+        i.putExtra("PointMap", (Parcelable) listView.getSelectedItem());
         editMapIndex = listView.getSelectedItemPosition();
         activityResultLauncher.launch(i);
     }
@@ -111,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
+                @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == Activity.RESULT_OK) {
@@ -122,8 +157,26 @@ public class MainActivity extends AppCompatActivity {
                         }else{
                             maps.set(editMapIndex,pointMap);
                         }
+                        save();
                     }
                 }
             });
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void save(){
+        requestPermissions(new String[] {Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE},3);
+        try {
+            File file = new File(getFilesDir(),"maps.dat");
+            FileOutputStream fos = new FileOutputStream(file);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(maps);
+            oos.close();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

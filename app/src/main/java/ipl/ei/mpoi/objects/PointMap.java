@@ -15,6 +15,7 @@ import org.xml.sax.SAXException;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.LinkedList;
 
 import javax.xml.XMLConstants;
@@ -28,7 +29,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-public class PointMap implements Parcelable {
+public class PointMap implements Parcelable, Serializable {
     private String name;
     private LinkedList<PointOfInterest> points;
 
@@ -61,7 +62,7 @@ public class PointMap implements Parcelable {
                 Double lat  = Double.parseDouble(((Element) position).getAttribute("lat"));
                 Double lng  = Double.parseDouble(((Element) position).getAttribute("lng"));
                 Double alt  = Double.parseDouble(((Element) position).getAttribute("lat"));
-                PointOfInterest point = new PointOfInterest(name,new LatLng(lat,lng),alt,category,description,classification);
+                PointOfInterest point = new PointOfInterest(name,lat,lng,alt,category,description,classification);
                 addPoint(point);
             }
         }
@@ -112,7 +113,6 @@ public class PointMap implements Parcelable {
 
     public void toXml(File xmlFilePath){
         try {
-
             DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
             Document document = documentBuilder.newDocument();

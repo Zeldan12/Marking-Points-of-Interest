@@ -5,18 +5,22 @@ import android.os.Parcelable;
 
 import com.google.android.gms.maps.model.LatLng;
 
-public class PointOfInterest implements Parcelable {
+import java.io.Serializable;
+
+public class PointOfInterest implements Parcelable, Serializable {
 
     private String name;
-    private LatLng position;
+    private Double latitude;
+    private Double longitude;
     private Double altitude;
     private String category;
     private String description;
     private String classification;
 
-    public PointOfInterest(String name, LatLng position, Double altitude, String category, String description, String classification) {
+    public PointOfInterest(String name, Double latitude,Double longitude, Double altitude, String category, String description, String classification) {
         this.name = name;
-        this.position = position;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.altitude = altitude;
         this.category = category;
         this.description = description;
@@ -28,9 +32,8 @@ public class PointOfInterest implements Parcelable {
         category = in.readString();
         description = in.readString();
         classification = in.readString();
-        Double lat = in.readDouble();
-        Double lng = in.readDouble();
-        position = new LatLng(lat,lng);
+        latitude = in.readDouble();
+        longitude = in.readDouble();
         altitude = in.readDouble();
     }
 
@@ -55,8 +58,8 @@ public class PointOfInterest implements Parcelable {
         dest.writeString(category);
         dest.writeString(description);
         dest.writeString(classification);
-        dest.writeDouble(position.latitude);
-        dest.writeDouble(position.longitude);
+        dest.writeDouble(latitude);
+        dest.writeDouble(longitude);
         dest.writeDouble(altitude);
     }
 
@@ -69,11 +72,23 @@ public class PointOfInterest implements Parcelable {
     }
 
     public LatLng getPosition() {
-        return position;
+        return new LatLng(latitude,longitude);
     }
 
-    public void setPosition(LatLng position) {
-        this.position = position;
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 
     public String getCategory() {
