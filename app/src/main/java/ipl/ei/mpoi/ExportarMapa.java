@@ -18,8 +18,7 @@ import ipl.ei.mpoi.objects.PointMap;
 
 public class ExportarMapa extends Fragment {
 
-    private @NonNull
-    FragmentExportarMapaBinding binding;
+    private @NonNull FragmentExportarMapaBinding binding;
 
     public ExportarMapa() {
         // Required empty public constructor
@@ -33,7 +32,7 @@ public class ExportarMapa extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ((MainActivity) getActivity()).onFragmentExportarMapaReady();
+        ((MainActivity) getActivity()).setMapListAdapter(binding.exportarMapList);
         binding.exportarMapList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

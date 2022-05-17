@@ -28,6 +28,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import ipl.ei.mpoi.databinding.ActivityMainBinding;
+import ipl.ei.mpoi.objects.MapListAdapter;
 import ipl.ei.mpoi.objects.PointMap;
 
 import android.view.Menu;
@@ -72,11 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 ois.close();
                 bis.close();
                 fis.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
+            } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
 
@@ -94,9 +91,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void onFragmentExportarMapaReady(){
-        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, maps);
-        ((ListView)findViewById(R.id.exportarMapList)).setAdapter(adapter);
+    public void setMapListAdapter(ListView view){
+        adapter = new MapListAdapter(this, android.R.layout.simple_list_item_1, maps);
+        view.setAdapter(adapter);
     }
 
     @Override

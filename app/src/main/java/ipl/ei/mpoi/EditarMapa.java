@@ -14,12 +14,6 @@ import android.widget.AdapterView;
 import ipl.ei.mpoi.databinding.FragmentEditarMapaBinding;
 import ipl.ei.mpoi.databinding.FragmentExportarMapaBinding;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link EditarMapa#newInstance} factory method to
- * create an instance of this fragment.
- *
- */
 public class EditarMapa extends Fragment {
 
     private @NonNull FragmentEditarMapaBinding binding;
@@ -36,6 +30,7 @@ public class EditarMapa extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ((MainActivity) getActivity()).setMapListAdapter(binding.mapList);
         binding.buttonEditConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
