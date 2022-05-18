@@ -13,24 +13,27 @@
 
         <Button
             android:id="@+id/buttonPrevious"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="27dp"
+            android:layout_width="145dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginBottom="20dp"
             android:text="Voltar"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <com.google.android.gms.maps.MapView
             android:id="@+id/mapView"
-            android:layout_width="365dp"
-            android:layout_height="572dp"
+            android:layout_width="364dp"
+            android:layout_height="472dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="27dp"
+            android:layout_marginTop="76dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginBottom="75dp"
             android:apiKey="@string/google_maps_key"
             android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/buttonPrevious"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SpeakableTextPresentCheck"
@@ -38,12 +41,12 @@
 
         <Button
             android:id="@+id/buttonAddPoint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="13dp"
-            android:layout_marginBottom="16dp"
+            android:layout_width="80dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
             android:enabled="true"
-            android:text="@string/add_point"
+            app:icon="@drawable/addpoint"
             app:iconTint="#00B10707"
             app:iconTintMode="add"
             app:layout_constraintBottom_toBottomOf="@+id/mapView"
@@ -51,13 +54,13 @@
 
         <Button
             android:id="@+id/buttonGravar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="23dp"
-            android:layout_marginBottom="27dp"
+            android:layout_width="145dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginBottom="20dp"
             android:text="Gravar Mapa"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
