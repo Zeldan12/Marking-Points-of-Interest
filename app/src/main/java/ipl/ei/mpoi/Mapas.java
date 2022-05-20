@@ -38,6 +38,7 @@ public class Mapas extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ((PointMap)parent.getItemAtPosition(position)).toXml(getActivity().getExternalMediaDirs()[0]);
+                NavHostFragment.findNavController(Mapas.this).navigate(R.id.action_mapas_to_editarMapa2);
             }
         }
         );
@@ -45,7 +46,7 @@ public class Mapas extends Fragment {
         binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(Mapas.this).navigate(R.id.action_exportarMapa2_to_menu);
+                NavHostFragment.findNavController(Mapas.this).navigate(R.id.action_mapas_to_menu);
             }
         });
     }

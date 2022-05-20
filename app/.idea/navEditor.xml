@@ -8,13 +8,25 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
+                  <entry key="editarMapa2">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="6" />
+                            <option name="y" value="189" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="exportarMapa2">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="1" />
-                            <option name="y" value="193" />
+                            <option name="x" value="205" />
+                            <option name="y" value="189" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -38,6 +50,15 @@
                             <option name="y" value="-120" />
                           </Point>
                         </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_mapas_to_menu">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
                       </LayoutPositions>
                     </value>
                   </entry>
@@ -58,6 +79,16 @@
                               </value>
                             </entry>
                             <entry key="action_menu_to_mapas">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_menu_to_paginaInical">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_menu_to_sobre2">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -93,9 +124,18 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="211" />
-                            <option name="y" value="186" />
+                            <option name="x" value="410" />
+                            <option name="y" value="191" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_sobre2_to_menu">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>

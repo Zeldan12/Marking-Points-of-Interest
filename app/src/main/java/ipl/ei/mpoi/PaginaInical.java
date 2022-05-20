@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import ipl.ei.mpoi.databinding.FragmentFirstBinding;
 import ipl.ei.mpoi.databinding.FragmentPaginaInicalBinding;
 
 public class PaginaInical extends Fragment {

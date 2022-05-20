@@ -37,5 +37,19 @@ public class EditarMapa extends Fragment {
                 ((MainActivity) getActivity()).changeToMapActivity(binding.mapList);
             }
         });
+
+        binding.buttonEditConfirmar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(EditarMapa.this).navigate(R.id.action_editarMapa2_to_mapas);
+            }
+        });
+
+        binding.button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(EditarMapa.this).navigate(R.id.action_editarMapa2_to_mapas);
+            }
+        });
     }
 }

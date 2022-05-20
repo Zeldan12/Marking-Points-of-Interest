@@ -13,8 +13,8 @@
 
         <Button
             android:id="@+id/buttonPrevious"
-            android:layout_width="145dp"
-            android:layout_height="48dp"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
             android:layout_marginEnd="35dp"
             android:layout_marginBottom="20dp"
             android:text="Voltar"
@@ -54,8 +54,8 @@
 
         <Button
             android:id="@+id/buttonGravar"
-            android:layout_width="145dp"
-            android:layout_height="48dp"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
             android:layout_marginStart="35dp"
             android:layout_marginBottom="20dp"
             android:text="Gravar Mapa"

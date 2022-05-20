@@ -12,7 +12,7 @@
 
         <Button
             android:id="@+id/criarMapa"
-            android:layout_width="245dp"
+            android:layout_width="250dp"
             android:layout_height="55dp"
             android:layout_marginStart="80dp"
             android:layout_marginTop="95dp"
@@ -25,7 +25,7 @@
 
         <Button
             android:id="@+id/editarMapa"
-            android:layout_width="245dp"
+            android:layout_width="250dp"
             android:layout_height="55dp"
             android:layout_marginStart="80dp"
             android:layout_marginTop="41dp"
@@ -38,7 +38,7 @@
 
         <Button
             android:id="@+id/exportarMapa"
-            android:layout_width="245dp"
+            android:layout_width="250dp"
             android:layout_height="55dp"
             android:layout_marginStart="80dp"
             android:layout_marginTop="37dp"
@@ -51,7 +51,7 @@
 
         <Button
             android:id="@+id/sobre"
-            android:layout_width="245dp"
+            android:layout_width="250dp"
             android:layout_height="55dp"
             android:layout_marginStart="80dp"
             android:layout_marginTop="37dp"
@@ -64,8 +64,8 @@
 
         <Button
             android:id="@+id/voltar"
-            android:layout_width="136dp"
-            android:layout_height="49dp"
+            android:layout_width="190dp"
+            android:layout_height="50dp"
             android:layout_marginStart="140dp"
             android:layout_marginEnd="140dp"
             android:layout_marginBottom="30dp"
