@@ -45,7 +45,14 @@
         android:id="@+id/mapas"
         android:name="ipl.ei.mpoi.Mapas"
         android:label="fragment_mapas"
-        tools:layout="@layout/fragment_mapas" />
+        tools:layout="@layout/fragment_mapas" >
+        <action
+            android:id="@+id/action_mapas_to_menu"
+            app:destination="@id/menu" />
+        <action
+            android:id="@+id/action_mapas_to_editarMapa2"
+            app:destination="@id/editarMapa2" />
+    </fragment>
     <fragment
         android:id="@+id/exportarMapa2"
         android:name="ipl.ei.mpoi.ExportarMapa"
@@ -54,5 +61,14 @@
         <action
             android:id="@+id/action_exportarMapa2_to_menu"
             app:destination="@id/menu" />
+    </fragment>
+    <fragment
+        android:id="@+id/editarMapa2"
+        android:name="ipl.ei.mpoi.EditarMapa"
+        android:label="fragment_editar_mapa"
+        tools:layout="@layout/fragment_editar_mapa" >
+        <action
+            android:id="@+id/action_editarMapa2_to_mapas"
+            app:destination="@id/mapas" />
     </fragment>
 </navigation>

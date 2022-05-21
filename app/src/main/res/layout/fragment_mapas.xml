@@ -17,22 +17,20 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="13dp"
             android:text="Lista de Mapas"
             android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@+id/_dynamic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ListView
-            android:id="@+id/mapListEdit"
-            android:layout_width="410dp"
-            android:layout_height="563dp"
+            android:id="@+id/mapList"
+            android:layout_width="418dp"
+            android:layout_height="456dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="11dp"
+            android:layout_marginTop="93dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="50dp"
             app:layout_constraintBottom_toTopOf="@+id/button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,22 +38,15 @@
 
         <Button
             android:id="@+id/button"
-            android:layout_width="160dp"
+            android:layout_width="190dp"
             android:layout_height="50dp"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginEnd="120dp"
             android:layout_marginBottom="30dp"
-            android:text="EditarMapa"
+            android:text="Voltar"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <Button
-            android:id="@+id/button6"
-            android:layout_width="160dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="30dp"
-            android:text="Eliminar Mapa"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

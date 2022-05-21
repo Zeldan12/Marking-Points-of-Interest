@@ -18,7 +18,7 @@
             android:layout_marginTop="100dp"
             android:layout_marginEnd="50dp"
             android:layout_marginBottom="40dp"
-            android:text="Marking real Points of Interest"
+            android:text="Marking real Points of Interest\n\nVersão 1.0\n\nDesenvolvido por:\n   Filipe Sousa\n   Isac Amado\n\n                    2021/2022"
             android:textSize="20dp"
             app:layout_constraintBottom_toTopOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="parent"
