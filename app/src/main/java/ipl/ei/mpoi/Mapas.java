@@ -37,8 +37,7 @@ public class Mapas extends Fragment {
         binding.mapList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ((PointMap)parent.getItemAtPosition(position)).toXml(getActivity().getExternalMediaDirs()[0]);
-                NavHostFragment.findNavController(Mapas.this).navigate(R.id.action_mapas_to_editarMapa2);
+                ((MainActivity) getActivity()).changeToMapActivity(((PointMap)parent.getItemAtPosition(position)), position);
             }
         }
         );

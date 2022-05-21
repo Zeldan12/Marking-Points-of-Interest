@@ -31,12 +31,12 @@ public class EditarMapa extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ((MainActivity) getActivity()).setMapListAdapter(binding.mapList);
-        binding.buttonEditConfirmar.setOnClickListener(new View.OnClickListener() {
+        /*binding.buttonEditConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((MainActivity) getActivity()).changeToMapActivity(binding.mapList);
             }
-        });
+        });*/
 
         binding.buttonEditConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override

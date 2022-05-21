@@ -132,10 +132,10 @@ public class MainActivity extends AppCompatActivity {
         activityResultLauncher.launch(i);
     }
 
-    public void changeToMapActivity(ListView listView){
+    public void changeToMapActivity(PointMap map, int index){
         Intent i = new Intent(this, MapActivity.class);
-        i.putExtra("PointMap", (Parcelable) listView.getSelectedItem());
-        editMapIndex = listView.getSelectedItemPosition();
+        i.putExtra("PointMap", (Parcelable) map);
+        editMapIndex = index;
         activityResultLauncher.launch(i);
     }
 
