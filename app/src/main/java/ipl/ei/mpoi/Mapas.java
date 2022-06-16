@@ -41,7 +41,9 @@ public class Mapas extends Fragment {
         binding.mapList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                NavHostFragment.findNavController(Mapas.this).navigate(R.id.editarMapa2);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("pointMap",((PointMap)parent.getItemAtPosition(position)));
+                NavHostFragment.findNavController(Mapas.this).navigate(R.id.editarMapa2,bundle);
                 //((MainActivity) getActivity()).changeToMapActivity(((PointMap)parent.getItemAtPosition(position)), position);
             }
         }

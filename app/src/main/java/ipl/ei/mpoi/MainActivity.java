@@ -9,11 +9,7 @@ import android.location.LocationListener;
 import android.os.Build;
 import android.os.Bundle;
 
-<<<<<<< HEAD
 import com.google.android.material.appbar.AppBarLayout;
-=======
-
->>>>>>> fa0a2807ffd16651b0bddefce5eb0b15a830de62
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.activity.result.ActivityResult;
@@ -43,11 +39,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-<<<<<<< HEAD
-import android.widget.Toolbar;
-=======
+
 import androidx.appcompat.widget.Toolbar;
->>>>>>> fa0a2807ffd16651b0bddefce5eb0b15a830de62
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -89,8 +82,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("");
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -103,6 +95,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void onStart() {
+        super.onStart();
+        setActionBarTitle("Página Inicial");
+    }
+
     public void setMapListAdapter(ListView view){
         adapter = new MapListAdapter(this, android.R.layout.simple_list_item_1, maps);
         view.setAdapter(adapter);
@@ -110,7 +107,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void setActionBarTitle(String title){
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(title);
+        if(toolbar != null){
+            toolbar.setTitle(title);
+        }
+
     }
 
     @Override
@@ -136,15 +136,50 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == 1) {
+
+            // Checking whether user granted the permission or not.
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Location Permission Granted", Toast.LENGTH_SHORT).show();
+                return;
+            } else {
+                Toast.makeText(this, "Location Pemission is necessary!", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(this, MainActivity.class);
+                startActivity(i);
+            }
+        } else if (requestCode == 2) {
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Location Permission Granted", Toast.LENGTH_SHORT).show();
+            } else {
+                /*Toast.makeText(this, "Location Pemission is necessary!", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(this, MainActivity.class);
+                startActivity(i);*/
+            }
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void requestPermissions(){
+        requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION},1);
+        requestPermissions(new String[] {Manifest.permission.ACCESS_COARSE_LOCATION},2);
+    }
+
+    @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
     }
 
-    public void changeToMapActivity(){
+    public void changeToMapActivity(String mapName){
         Intent i = new Intent(this, MapActivity.class);
-        i.putExtra("PointMap", (Parcelable) new PointMap("Mapa1"));
+        i.putExtra("PointMap", (Parcelable) new PointMap(mapName));
         editMapIndex = -1;
         activityResultLauncher.launch(i);
     }

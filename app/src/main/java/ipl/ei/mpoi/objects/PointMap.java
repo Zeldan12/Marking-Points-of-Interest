@@ -56,13 +56,12 @@ public class PointMap implements Parcelable, Serializable {
                 String name  = ((Element) node).getAttribute("name");
                 String description  = ((Element) node).getAttribute("description");
                 String category  = ((Element) node).getAttribute("category");
-                String classification  = ((Element) node).getAttribute("classification");
 
                 Node position = node.getFirstChild();
                 Double lat  = Double.parseDouble(((Element) position).getAttribute("lat"));
                 Double lng  = Double.parseDouble(((Element) position).getAttribute("lng"));
                 Double alt  = Double.parseDouble(((Element) position).getAttribute("lat"));
-                PointOfInterest point = new PointOfInterest(name,lat,lng,alt,category,description,classification);
+                PointOfInterest point = new PointOfInterest(name,lat,lng,alt,category,description);
                 addPoint(point);
             }
         }
@@ -126,7 +125,6 @@ public class PointMap implements Parcelable, Serializable {
                 elementPoint.setAttribute("name",point.getName());
                 elementPoint.setAttribute("description",point.getDescription());
                 elementPoint.setAttribute("category",point.getCategory());
-                elementPoint.setAttribute("classification",point.getClassification());
                 Element position = document.createElement("position");
                 position.setAttribute("lat",Double.toString(point.getPosition().latitude));
                 position.setAttribute("lng",Double.toString(point.getPosition().longitude));

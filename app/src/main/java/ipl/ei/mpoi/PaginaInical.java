@@ -1,8 +1,13 @@
 package ipl.ei.mpoi;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -30,11 +35,18 @@ public class PaginaInical extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         //((MainActivity) getActivity()).setActionBarTitle("Página Inicial");
-
         binding.iniciar.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(PaginaInical.this).navigate(R.id.action_paginaInical_to_menu);
+                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                        && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    NavHostFragment.findNavController(PaginaInical.this).navigate(R.id.action_paginaInical_to_menu);
+                }else{
+                    ((MainActivity) getActivity()).requestPermissions();
+                }
+
+
             }
         });
 

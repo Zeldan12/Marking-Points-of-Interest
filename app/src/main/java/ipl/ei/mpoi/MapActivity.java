@@ -18,6 +18,7 @@ import android.os.Parcelable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -73,6 +74,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         });
     }
 
+    /*public void onStart() {
+        super.onStart();
+        Toolbar toolbar = findViewById(R.id.menu);
+        toolbar.setTitle(pointMap.getName());
+    }*/
+
     private void changeToMainActivity(){
         setResult(RESULT_CANCELED);
         finish();
@@ -116,7 +123,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
         googleMap.animateCamera(cameraUpdate);
         findViewById(R.id.buttonAddPoint).setOnClickListener(this::clickAddPoint);
-        findViewById(R.id.buttonConfirm).setOnClickListener(this::clickCreatePoint);
+        findViewById(R.id.buttonGravarPonto).setOnClickListener(this::clickCreatePoint);
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
     }
@@ -127,6 +134,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             findViewById(R.id.buttonAddPoint).setEnabled(true);
             loc = location;
             LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+            findViewById(R.id.buttonAddPoint).setEnabled(true);
             /*CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 20);
             googleMap.animateCamera(cameraUpdate);*/
         }
@@ -171,24 +179,25 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
         findViewById(R.id.mapEditView).setVisibility(View.GONE);
         findViewById(R.id.addPointView).setVisibility(View.VISIBLE);
-        ((EditText) findViewById(R.id.editTextLatitude)).setText(Double.toString(loc.getLatitude()));
-        ((EditText) findViewById(R.id.editTextLongitude)).setText(Double.toString(loc.getLongitude()));
-        ((EditText) findViewById(R.id.editTextAltitude)).setText(Double.toString(loc.getAltitude()));
-        ((EditText) findViewById(R.id.editTextName)).setText("");
+        ((TextView) findViewById(R.id.textLatitude)).setText(Double.toString(loc.getLatitude()));
+        ((TextView) findViewById(R.id.textLongitude)).setText(Double.toString(loc.getLongitude()));
+        ((TextView) findViewById(R.id.textAltitude)).setText(Double.toString(loc.getAltitude()));
+        ((EditText) findViewById(R.id.nameInput)).setText("");
+        ((EditText) findViewById(R.id.descriptionInput)).setText("");
     }
 
     private void clickCreatePoint(View v){
         findViewById(R.id.addPointView).setVisibility(View.GONE);
         findViewById(R.id.mapEditView).setVisibility(View.VISIBLE);
-        Double lat = Double.parseDouble(((EditText) findViewById(R.id.editTextLatitude)).getText().toString());
-        Double lng = Double.parseDouble(((EditText) findViewById(R.id.editTextLongitude)).getText().toString());
-        Double alt = Double.parseDouble(((EditText) findViewById(R.id.editTextAltitude)).getText().toString());
+        Double lat = Double.parseDouble(((TextView) findViewById(R.id.textLatitude)).getText().toString());
+        Double lng = Double.parseDouble(((TextView) findViewById(R.id.textLongitude)).getText().toString());
+        Double alt = Double.parseDouble(((TextView) findViewById(R.id.textAltitude)).getText().toString());
         LatLng latLng = new LatLng(lat, lng);
-        String categoria = ((Spinner)findViewById(R.id.spinner)).getSelectedItem().toString();
-        String description = ((EditText)findViewById(R.id.description)).getText().toString();
-        String name = ((EditText)findViewById(R.id.editTextName)).getText().toString();
+        String categoria = ((Spinner)findViewById(R.id.spinnerCategoria)).getSelectedItem().toString();
+        String description = ((EditText)findViewById(R.id.descriptionInput)).getText().toString();
+        String name = ((EditText)findViewById(R.id.nameInput)).getText().toString();
 
-        PointOfInterest newPoint = new PointOfInterest(name,latLng.latitude,latLng.longitude,alt, categoria, description,"1");
+        PointOfInterest newPoint = new PointOfInterest(name,latLng.latitude,latLng.longitude,alt, categoria, description);
         googleMap.addMarker(new MarkerOptions().position(latLng).title(name));
         pointMap.addPoint(newPoint);
     }

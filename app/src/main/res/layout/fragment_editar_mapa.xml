@@ -10,6 +10,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ListView
+            android:id="@+id/pointList"
+            android:layout_width="410dp"
+            android:layout_height="404dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="29dp"
+            app:layout_constraintBottom_toTopOf="@+id/buttonEditConfirmar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNome"
+            app:layout_constraintVertical_bias="1.0" />
+
         <TextView
             android:id="@+id/textView9"
             android:layout_width="342dp"
@@ -44,30 +57,30 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/textView10"
-            android:layout_width="255dp"
-            android:layout_height="35dp"
+            android:id="@+id/textViewNomeTag"
+            android:layout_width="254dp"
+            android:layout_height="37dp"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="80dp"
             android:text="Nome:"
             android:textAlignment="textStart"
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.333"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-        <ListView
-            android:id="@+id/mapList"
-            android:layout_width="409dp"
-            android:layout_height="375dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="46dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="25dp"
-            app:layout_constraintBottom_toTopOf="@+id/button4"
+        <TextView
+            android:id="@+id/textViewNome"
+            android:layout_width="193dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginEnd="78dp"
+            android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewNomeTag" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

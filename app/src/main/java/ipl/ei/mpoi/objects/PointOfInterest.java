@@ -15,23 +15,20 @@ public class PointOfInterest implements Parcelable, Serializable {
     private Double altitude;
     private String category;
     private String description;
-    private String classification;
 
-    public PointOfInterest(String name, Double latitude,Double longitude, Double altitude, String category, String description, String classification) {
+    public PointOfInterest(String name, Double latitude,Double longitude, Double altitude, String category, String description) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
         this.altitude = altitude;
         this.category = category;
         this.description = description;
-        this.classification = classification;
     }
 
     public PointOfInterest(Parcel in) {
         name = in.readString();
         category = in.readString();
         description = in.readString();
-        classification = in.readString();
         latitude = in.readDouble();
         longitude = in.readDouble();
         altitude = in.readDouble();
@@ -57,7 +54,6 @@ public class PointOfInterest implements Parcelable, Serializable {
         dest.writeString(name);
         dest.writeString(category);
         dest.writeString(description);
-        dest.writeString(classification);
         dest.writeDouble(latitude);
         dest.writeDouble(longitude);
         dest.writeDouble(altitude);
@@ -105,14 +101,6 @@ public class PointOfInterest implements Parcelable, Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getClassification() {
-        return classification;
-    }
-
-    public void setClassification(String classification) {
-        this.classification = classification;
     }
 
     public Double getAltitude() {
