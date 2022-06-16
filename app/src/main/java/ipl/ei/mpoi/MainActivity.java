@@ -8,6 +8,7 @@ import android.location.LocationListener;
 import android.os.Build;
 import android.os.Bundle;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.activity.result.ActivityResult;
@@ -37,6 +38,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -78,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
-
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("");
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
