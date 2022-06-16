@@ -4,44 +4,31 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.navigation.fragment.NavHostFragment;
 
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Point;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Parcelable;
-import android.util.Log;
-import android.util.Xml;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.LocationSource;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import org.w3c.dom.Element;
-import org.xmlpull.v1.XmlSerializer;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.LinkedList;
 
 import ipl.ei.mpoi.objects.PointMap;
@@ -197,9 +184,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         Double lng = Double.parseDouble(((EditText) findViewById(R.id.editTextLongitude)).getText().toString());
         Double alt = Double.parseDouble(((EditText) findViewById(R.id.editTextAltitude)).getText().toString());
         LatLng latLng = new LatLng(lat, lng);
+        String categoria = ((Spinner)findViewById(R.id.spinner)).getSelectedItem().toString();
+        String description = ((EditText)findViewById(R.id.description)).getText().toString();
         String name = ((EditText)findViewById(R.id.editTextName)).getText().toString();
 
-        PointOfInterest newPoint = new PointOfInterest(name,latLng.latitude,latLng.longitude,alt,"category","desc","1");
+        PointOfInterest newPoint = new PointOfInterest(name,latLng.latitude,latLng.longitude,alt, categoria, description,"1");
         googleMap.addMarker(new MarkerOptions().position(latLng).title(name));
         pointMap.addPoint(newPoint);
     }

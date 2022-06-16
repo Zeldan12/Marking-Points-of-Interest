@@ -29,11 +29,14 @@ public class PaginaInical extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        //((MainActivity) getActivity()).setActionBarTitle("Página Inicial");
+
         binding.iniciar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(PaginaInical.this).navigate(R.id.action_paginaInical_to_menu);
             }
         });
+
     }
 }

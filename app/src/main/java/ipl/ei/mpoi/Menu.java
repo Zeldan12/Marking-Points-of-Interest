@@ -43,6 +43,8 @@ public class Menu extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        ((MainActivity) getActivity()).setActionBarTitle("Menu");
+
         binding.criarMapa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

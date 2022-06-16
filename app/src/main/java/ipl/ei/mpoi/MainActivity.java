@@ -4,11 +4,16 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.icu.text.CaseMap;
 import android.location.LocationListener;
 import android.os.Build;
 import android.os.Bundle;
 
+<<<<<<< HEAD
 import com.google.android.material.appbar.AppBarLayout;
+=======
+
+>>>>>>> fa0a2807ffd16651b0bddefce5eb0b15a830de62
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.activity.result.ActivityResult;
@@ -38,7 +43,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+<<<<<<< HEAD
 import android.widget.Toolbar;
+=======
+import androidx.appcompat.widget.Toolbar;
+>>>>>>> fa0a2807ffd16651b0bddefce5eb0b15a830de62
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -99,11 +108,16 @@ public class MainActivity extends AppCompatActivity {
         view.setAdapter(adapter);
     }
 
+    public void setActionBarTitle(String title){
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(title);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        return false;
     }
 
     @Override

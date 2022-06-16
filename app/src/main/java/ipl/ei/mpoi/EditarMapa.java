@@ -30,6 +30,9 @@ public class EditarMapa extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        ((MainActivity) getActivity()).setActionBarTitle("Editar Mapa");
+
         ((MainActivity) getActivity()).setMapListAdapter(binding.mapList);
         /*binding.buttonEditConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
