@@ -4,9 +4,11 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.icu.text.CaseMap;
 import android.location.LocationListener;
 import android.os.Build;
 import android.os.Bundle;
+
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -37,6 +39,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+import androidx.appcompat.widget.Toolbar;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -96,11 +99,16 @@ public class MainActivity extends AppCompatActivity {
         view.setAdapter(adapter);
     }
 
+    public void setActionBarTitle(String title){
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(title);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        return false;
     }
 
     @Override

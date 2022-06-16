@@ -44,6 +44,20 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="461dp" />
 
+        <EditText
+            android:id="@+id/description"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginEnd="70dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.523"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="412dp" />
+
         <TextView
             android:id="@+id/textView6"
             android:layout_width="250dp"

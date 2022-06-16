@@ -33,11 +33,16 @@ public class Mapas extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        ((MainActivity) getActivity()).setActionBarTitle("Editar Mapa");
+
         ((MainActivity) getActivity()).setMapListAdapter(binding.mapList);
+
         binding.mapList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ((MainActivity) getActivity()).changeToMapActivity(((PointMap)parent.getItemAtPosition(position)), position);
+                NavHostFragment.findNavController(Mapas.this).navigate(R.id.editarMapa2);
+                //((MainActivity) getActivity()).changeToMapActivity(((PointMap)parent.getItemAtPosition(position)), position);
             }
         }
         );

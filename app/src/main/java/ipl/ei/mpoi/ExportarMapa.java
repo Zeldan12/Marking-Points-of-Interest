@@ -32,7 +32,11 @@ public class ExportarMapa extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        ((MainActivity) getActivity()).setActionBarTitle("Exportar Mapa");
+
         ((MainActivity) getActivity()).setMapListAdapter(binding.exportarMapList);
+
         binding.exportarMapList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
