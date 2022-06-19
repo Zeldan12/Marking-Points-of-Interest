@@ -60,10 +60,21 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mapView = (MapView) findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
+    }
+
+    public void onStart() {
+        super.onStart();
         findViewById(R.id.buttonGravar).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 changeToMainActivity(pointMap);
+            }
+        });
+        findViewById(R.id.buttonCancelar).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                findViewById(R.id.addPointView).setVisibility(View.GONE);
+                findViewById(R.id.mapEditView).setVisibility(View.VISIBLE);
             }
         });
         findViewById(R.id.buttonPrevious).setOnClickListener(new View.OnClickListener() {
@@ -73,12 +84,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             }
         });
     }
-
-    /*public void onStart() {
-        super.onStart();
-        Toolbar toolbar = findViewById(R.id.menu);
-        toolbar.setTitle(pointMap.getName());
-    }*/
 
     private void changeToMainActivity(){
         setResult(RESULT_CANCELED);
