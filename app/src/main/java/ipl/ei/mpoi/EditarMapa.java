@@ -39,7 +39,7 @@ public class EditarMapa extends Fragment {
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        /*super.onViewCreated(view, savedInstanceState);
         pointMap = (PointMap)getArguments().getSerializable("pointMap");
         ((MainActivity) getActivity()).setActionBarTitle("Editar Mapa");
         binding.textViewNome.setText(pointMap.getName());
@@ -47,12 +47,12 @@ public class EditarMapa extends Fragment {
         ArrayAdapter adapter = new PointListAdapter(getContext(), android.R.layout.simple_list_item_1, new ArrayList<PointOfInterest>(pointMap.getPoints()));
         binding.pointList.setAdapter(adapter);
 
-        /*binding.buttonEditConfirmar.setOnClickListener(new View.OnClickListener() {
+        binding.buttonEditConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((MainActivity) getActivity()).changeToMapActivity(binding.mapList);
             }
-        });*/
+        });
 
         binding.buttonEditConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +66,6 @@ public class EditarMapa extends Fragment {
             public void onClick(View view) {
                 NavHostFragment.findNavController(EditarMapa.this).navigate(R.id.action_editarMapa2_to_mapas);
             }
-        });
+        });*/
     }
 }

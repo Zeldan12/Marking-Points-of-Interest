@@ -16,7 +16,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,8 +32,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
+import ipl.ei.mpoi.objects.PointListAdapter;
 import ipl.ei.mpoi.objects.PointMap;
 import ipl.ei.mpoi.objects.PointOfInterest;
 
@@ -57,6 +61,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             }
         });*/
         requestPermissions(new String[] {Manifest.permission.MANAGE_EXTERNAL_STORAGE},3);
+        findViewById(R.id.buttonAddPoint).setEnabled(false);
         mapView = (MapView) findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
@@ -70,17 +75,33 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 changeToMainActivity(pointMap);
             }
         });
-        findViewById(R.id.buttonCancelar).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                findViewById(R.id.addPointView).setVisibility(View.GONE);
-                findViewById(R.id.mapEditView).setVisibility(View.VISIBLE);
-            }
-        });
+
         findViewById(R.id.buttonPrevious).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 changeToMainActivity();
+            }
+        });
+        findViewById(R.id.buttonPontos).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPontosView();
+
+            }
+        });
+        findViewById(R.id.buttonEditCancelar).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                findViewById(R.id.editarPontosView).setVisibility(View.GONE);
+                findViewById(R.id.mapEditView).setVisibility(View.VISIBLE);
+
+            }
+        });
+        findViewById(R.id.buttonEditConfirmar).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                findViewById(R.id.editarPontosView).setVisibility(View.GONE);
+                findViewById(R.id.mapEditView).setVisibility(View.VISIBLE);
             }
         });
     }
@@ -129,6 +150,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         googleMap.animateCamera(cameraUpdate);
         findViewById(R.id.buttonAddPoint).setOnClickListener(this::clickAddPoint);
         findViewById(R.id.buttonGravarPonto).setOnClickListener(this::clickCreatePoint);
+        findViewById(R.id.buttonCancelar).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                findViewById(R.id.addPointView).setVisibility(View.GONE);
+                findViewById(R.id.mapEditView).setVisibility(View.VISIBLE);
+            }
+        });
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
     }
@@ -213,6 +241,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         pointMap.toXml(getApplicationContext().getExternalMediaDirs()[0]);
         Toast.makeText(this, "done", Toast.LENGTH_SHORT).show();
+    }
+
+    private void showPontosView(){
+        ((TextView)findViewById(R.id.textViewNome)).setText(pointMap.getName());
+        ArrayAdapter adapter = new PointListAdapter(this, android.R.layout.simple_list_item_1, new ArrayList<PointOfInterest>(pointMap.getPoints()));
+        ((ListView)findViewById(R.id.pointList)).setAdapter(adapter);
+        findViewById(R.id.mapEditView).setVisibility(View.GONE);
+        findViewById(R.id.editarPontosView).setVisibility(View.VISIBLE);
     }
 
     @Override

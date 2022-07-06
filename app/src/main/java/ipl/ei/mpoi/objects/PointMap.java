@@ -16,6 +16,7 @@ import org.xml.sax.SAXException;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.io.StringWriter;
 import java.util.LinkedList;
 
 import javax.xml.XMLConstants;
@@ -146,5 +147,44 @@ public class PointMap implements Parcelable, Serializable {
         } catch (TransformerException tfe) {
             tfe.printStackTrace();
         }
+    }
+
+    public String toXml(){
+        try {
+            DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
+            Document document = documentBuilder.newDocument();
+
+            Element root = document.createElement("map");
+            root.setAttribute("name",getName());
+            document.appendChild(root);
+
+            for (PointOfInterest point : points) {
+                Element elementPoint = document.createElement("point");
+                elementPoint.setAttribute("name",point.getName());
+                elementPoint.setAttribute("description",point.getDescription());
+                elementPoint.setAttribute("category",point.getCategory());
+                Element position = document.createElement("position");
+                position.setAttribute("lat",Double.toString(point.getPosition().latitude));
+                position.setAttribute("lng",Double.toString(point.getPosition().longitude));
+                position.setAttribute("alt",Double.toString(point.getAltitude()));
+                elementPoint.appendChild(position);
+                root.appendChild(elementPoint);
+            }
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            StringWriter writer = new StringWriter();
+            DOMSource domSource = new DOMSource(document);
+
+            transformer.transform(domSource, new StreamResult(writer));
+            return writer.getBuffer().toString();
+
+        } catch (ParserConfigurationException pce) {
+            pce.printStackTrace();
+        } catch (TransformerException tfe) {
+            tfe.printStackTrace();
+        }
+        return null;
     }
 }

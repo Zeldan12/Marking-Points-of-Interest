@@ -45,6 +45,8 @@ public class MapListAdapter extends ArrayAdapter<PointMap> {
 
         return view;
     }
+
+
 }
 
 
