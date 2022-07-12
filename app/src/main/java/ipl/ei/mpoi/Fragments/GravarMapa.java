@@ -1,4 +1,4 @@
-package ipl.ei.mpoi;
+package ipl.ei.mpoi.Fragments;
 
 import android.os.Bundle;
 

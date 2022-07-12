@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ExportarMapa">
+    tools:context=".Fragments.Main.ExportarMapa">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -23,22 +23,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ListView
-            android:id="@+id/exportarMapList"
-            android:layout_width="418dp"
-            android:layout_height="456dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="93dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="50dp"
-            android:divider="@color/black"
-            android:dividerHeight="2dp"
-            app:layout_constraintBottom_toTopOf="@+id/button7"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.518"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
         <Button
             android:id="@+id/button7"
             android:layout_width="190dp"
@@ -50,6 +34,30 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/exportarMapList"
+            android:layout_width="379dp"
+            android:layout_height="508dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView13"
+            app:layout_constraintVertical_bias="0.341" />
+
+        <ProgressBar
+            android:id="@+id/progressBarUpload"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="114dp"
+            android:layout_height="119dp"
+            android:indeterminate="true"
+            android:progressTint="#7AB1B1B1"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="gone" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

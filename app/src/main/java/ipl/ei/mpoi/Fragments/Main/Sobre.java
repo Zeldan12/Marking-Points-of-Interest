@@ -1,4 +1,4 @@
-package ipl.ei.mpoi;
+package ipl.ei.mpoi.Fragments.Main;
 
 import android.os.Bundle;
 
@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import ipl.ei.mpoi.databinding.FragmentMenuBinding;
+import ipl.ei.mpoi.R;
 import ipl.ei.mpoi.databinding.FragmentSobreBinding;
 
 public class Sobre extends Fragment {
@@ -30,7 +30,7 @@ public class Sobre extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ((MainActivity) getActivity()).setActionBarTitle("Sobre");
+        //((MainActivity) getActivity()).setActionBarTitle("Sobre");
 
         binding.ok.setOnClickListener(new View.OnClickListener() {
             @Override

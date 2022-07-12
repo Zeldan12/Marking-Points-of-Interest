@@ -8,19 +8,24 @@
         <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/activity_map.xml" value="0.264" />
         <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/content_main.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/fragment_blank.xml" value="0.2604166666666667" />
-        <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/fragment_editar_mapa.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/fragment_exportar_mapa.xml" value="0.2" />
+        <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/fragment_editar_mapa.xml" value="0.5" />
+        <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/fragment_exportar_mapa.xml" value="0.5" />
         <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/fragment_first.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/fragment_gravar_mapa.xml" value="0.14375" />
-        <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/fragment_mapas.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/fragment_import_mapa.xml" value="0.22" />
+        <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/fragment_mapas.xml" value="0.25" />
         <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/fragment_maps.xml" value="0.2" />
         <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/fragment_marcar_ponto.xml" value="0.264" />
-        <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/fragment_menu.xml" value="0.14375" />
+        <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/fragment_menu.xml" value="0.2" />
         <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/fragment_new_point.xml" value="0.4" />
         <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/fragment_pagina_inical.xml" value="0.14375" />
         <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/fragment_second.xml" value="0.176" />
         <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/fragment_sobre.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/google_maps_api.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/import_map_card.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/import_map_card_view.xml" value="0.5" />
+        <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/map_card_view.xml" value="0.67" />
+        <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/layout/point_card_view.xml" value="0.67" />
         <entry key="..\:/Users/Isac Amado/Downloads/Projeto/MPoIMobileApp/app/src/main/res/menu/menu_main.xml" value="0.27447916666666666" />
       </map>
     </option>

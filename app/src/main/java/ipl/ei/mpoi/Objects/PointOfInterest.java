@@ -1,4 +1,4 @@
-package ipl.ei.mpoi.objects;
+package ipl.ei.mpoi.Objects;
 
 import android.os.Parcel;
 import android.os.Parcelable;

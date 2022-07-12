@@ -1,16 +1,11 @@
-package ipl.ei.mpoi;
+package ipl.ei.mpoi.Activities;
 
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.icu.text.CaseMap;
-import android.location.LocationListener;
 import android.os.Build;
 import android.os.Bundle;
-
-import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -21,7 +16,6 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Parcelable;
-import android.view.View;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -29,18 +23,27 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import ipl.ei.mpoi.Fragments.Main.ImportMapa;
+import ipl.ei.mpoi.R;
 import ipl.ei.mpoi.databinding.ActivityMainBinding;
-import ipl.ei.mpoi.objects.MapListAdapter;
-import ipl.ei.mpoi.objects.PointMap;
+import ipl.ei.mpoi.RecyclerViewAdapters.MapRecyclerViewAdapter;
+import ipl.ei.mpoi.Objects.PointMap;
+import ipl.ei.mpoi.CallBack.SelectCallBack;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -50,8 +53,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.LinkedList;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -59,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private ArrayList<PointMap> maps;
     private int editMapIndex = -1;
-    private ArrayAdapter adapter;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
-
         }
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -88,29 +95,28 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.toolbar);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+
+
+        AppBarConfiguration appBarConfiguration2 = new AppBarConfiguration.Builder(R.id.menu, R.id.paginaInical,R.id.exportarMapa2, R.id.mapas,R.id.sobre2).build();
+
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
+        NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration2);
 
     }
 
     public void onStart() {
         super.onStart();
-        setActionBarTitle("Página Inicial");
     }
 
-    public void setMapListAdapter(ListView view){
-        adapter = new MapListAdapter(this, android.R.layout.simple_list_item_1, maps);
+
+    public void setMapCardListAdapter(RecyclerView view, boolean elimButton, SelectCallBack callBack){
+        MapRecyclerViewAdapter adapter = new MapRecyclerViewAdapter(this, maps, elimButton, callBack);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        view.setLayoutManager(linearLayoutManager);
         view.setAdapter(adapter);
-    }
-
-    public void setActionBarTitle(String title){
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        if(toolbar != null){
-            toolbar.setTitle(title);
-        }
-
     }
 
     @Override
@@ -120,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -133,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
@@ -227,5 +233,51 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+    }
+
+    public void importMap(String name){
+        View loader = findViewById(R.id.progressBarUpload);
+        loader.setVisibility(View.VISIBLE);
+        Thread thread = new Thread(new Runnable() {
+
+        @Override
+        public void run() {
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder().url("https://mpoi-server.herokuapp.com/maps/" + name).get().build();
+            try (Response response = client.newCall(request).execute()) {
+                DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
+                Document document = documentBuilder.parse((new InputSource(new StringReader(response.body().string()))));
+                PointMap newMap = new PointMap(document);
+                maps.add(newMap);
+                runOnUiThread(new Runnable() {
+                    @RequiresApi(api = Build.VERSION_CODES.M)
+                    public void run() {
+                        loader.setVisibility(View.GONE);
+                        Toast.makeText( getApplicationContext(), "Mapa Importado!", Toast.LENGTH_LONG).show();
+                        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_content_main) ;
+                        NavController navController = navHostFragment.getNavController();
+                        save();
+                        navController.navigate(R.id.action_importMapa_to_mapas);
+                    }
+                });
+            } catch (IOException | ParserConfigurationException | SAXException e) {
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        loader.setVisibility(View.GONE);
+                        Toast.makeText( getApplicationContext(), "Connection Failed", Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        }
+
+    });
+        thread.start();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void removeMap(PointMap map){
+        maps.remove(map);
+        save();
     }
 }

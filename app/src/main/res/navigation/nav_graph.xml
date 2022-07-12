@@ -7,18 +7,18 @@
 
     <fragment
         android:id="@+id/paginaInical"
-        android:name="ipl.ei.mpoi.PaginaInical"
-        android:label="fragment_pagina_inical"
-        tools:layout="@layout/fragment_pagina_inical" >
+        android:name="ipl.ei.mpoi.Fragments.Main.PaginaInical"
+        android:label="Página Incial"
+        tools:layout="@layout/fragment_pagina_inical">
         <action
             android:id="@+id/action_paginaInical_to_menu"
             app:destination="@id/menu" />
     </fragment>
     <fragment
         android:id="@+id/menu"
-        android:name="ipl.ei.mpoi.Menu"
-        android:label="fragment_menu"
-        tools:layout="@layout/fragment_menu" >
+        android:name="ipl.ei.mpoi.Fragments.Main.Menu"
+        android:label="Menu"
+        tools:layout="@layout/fragment_menu">
         <action
             android:id="@+id/action_menu_to_mapas"
             app:destination="@id/mapas" />
@@ -31,47 +31,47 @@
         <action
             android:id="@+id/action_menu_to_paginaInical"
             app:destination="@id/paginaInical" />
+        <action
+            android:id="@+id/action_menu_to_importMapa"
+            app:destination="@id/importMapa" />
     </fragment>
     <fragment
         android:id="@+id/sobre2"
-        android:name="ipl.ei.mpoi.Sobre"
-        android:label="fragment_sobre"
-        tools:layout="@layout/fragment_sobre" >
+        android:name="ipl.ei.mpoi.Fragments.Main.Sobre"
+        android:label="Sobre"
+        tools:layout="@layout/fragment_sobre">
         <action
             android:id="@+id/action_sobre2_to_menu"
             app:destination="@id/menu" />
     </fragment>
     <fragment
         android:id="@+id/mapas"
-        android:name="ipl.ei.mpoi.Mapas"
-        android:label="fragment_mapas"
-        tools:layout="@layout/fragment_mapas" >
+        android:name="ipl.ei.mpoi.Fragments.Main.Mapas"
+        android:label="Mapas"
+        tools:layout="@layout/fragment_mapas">
         <action
             android:id="@+id/action_mapas_to_menu"
             app:destination="@id/menu" />
-        <action
-            android:id="@+id/action_mapas_to_editarMapa2"
-            app:destination="@id/editarMapa2" />
     </fragment>
     <fragment
         android:id="@+id/exportarMapa2"
-        android:name="ipl.ei.mpoi.ExportarMapa"
-        android:label="fragment_exportar_mapa"
-        tools:layout="@layout/fragment_exportar_mapa" >
+        android:name="ipl.ei.mpoi.Fragments.Main.ExportarMapa"
+        android:label="Exportar Mapa"
+        tools:layout="@layout/fragment_exportar_mapa">
         <action
             android:id="@+id/action_exportarMapa2_to_menu"
             app:destination="@id/menu" />
     </fragment>
     <fragment
-        android:id="@+id/editarMapa2"
-        android:name="ipl.ei.mpoi.EditarMapa"
-        android:label="fragment_editar_mapa"
-        tools:layout="@layout/fragment_editar_mapa" >
+        android:id="@+id/importMapa"
+        android:name="ipl.ei.mpoi.Fragments.Main.ImportMapa"
+        android:label="Importar Mapa"
+        tools:layout="@layout/fragment_import_mapa">
         <action
-            android:id="@+id/action_editarMapa2_to_mapas"
+            android:id="@+id/action_importMapa_to_menu"
+            app:destination="@id/menu" />
+        <action
+            android:id="@+id/action_importMapa_to_mapas"
             app:destination="@id/mapas" />
-        <argument
-            android:name="mapa"
-            app:argType="ipl.ei.mpoi.objects.PointMap" />
     </fragment>
 </navigation>

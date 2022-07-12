@@ -1,12 +1,8 @@
-package ipl.ei.mpoi.objects;
+package ipl.ei.mpoi.Objects;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.widget.Toast;
 
-import com.google.android.gms.maps.model.LatLng;
-
-import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -17,14 +13,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.io.StringWriter;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
-import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -32,15 +26,16 @@ import javax.xml.transform.stream.StreamResult;
 
 public class PointMap implements Parcelable, Serializable {
     private String name;
-    private LinkedList<PointOfInterest> points;
+    private ArrayList<PointOfInterest> points;
 
     public PointMap(String name){
-        this.name = name;
-        points = new LinkedList<PointOfInterest>();
+            this.name = name;
+            points = new ArrayList<PointOfInterest>();
+            return;
     }
 
     public PointMap(File xmlFilePath, String fileName) throws ParserConfigurationException, IOException, SAXException {
-        points = new LinkedList<PointOfInterest>();
+        points = new ArrayList<PointOfInterest>();
         DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
         //documentFactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
         DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
@@ -68,9 +63,40 @@ public class PointMap implements Parcelable, Serializable {
         }
     }
 
+    public PointMap(Document xml) throws ParserConfigurationException, IOException, SAXException {
+        points = new ArrayList<PointOfInterest>();
+        //xml.getDocumentElement().normalize();
+        Element map = (Element) xml.getElementsByTagName("map").item(0);
+        this.name = map.getAttribute("name");
+        NodeList pointList = map.getChildNodes();
+        for (int i = 0; i < pointList.getLength(); i++) {
+            Node node = pointList.item(i);
+
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                String name  = ((Element) node).getAttribute("name");
+                String description  = ((Element) node).getAttribute("description");
+                String category  = ((Element) node).getAttribute("category");
+                NodeList nodeList = node.getChildNodes();
+                for (int j = 0; j < nodeList.getLength(); j++) {
+                    Node position = nodeList.item(j);
+
+                    if (position.getNodeType() == Node.ELEMENT_NODE) {
+                        String latS = ((Element) position).getAttribute("lat");
+                        Double lat = Double.parseDouble(latS);
+                        Double lng = Double.parseDouble(((Element) position).getAttribute("lng"));
+                        Double alt = Double.parseDouble(((Element) position).getAttribute("lat"));
+                        PointOfInterest point = new PointOfInterest(name, lat, lng, alt, category, description);
+                        addPoint(point);
+                    }
+                }
+
+            }
+        }
+    }
+
     private PointMap(Parcel in){
         name = in.readString();
-        points = new LinkedList<PointOfInterest>();
+        points = new ArrayList<PointOfInterest>();
         in.readList(points,PointMap.class.getClassLoader());
     }
 
@@ -82,12 +108,16 @@ public class PointMap implements Parcelable, Serializable {
         this.name = name;
     }
 
-    public LinkedList<PointOfInterest> getPoints() {
+    public ArrayList<PointOfInterest> getPoints() {
         return points;
     }
 
     public void addPoint(PointOfInterest point){
         points.add(point);
+    }
+
+    public void removePoint(int position){
+        points.remove(position);
     }
 
     @Override

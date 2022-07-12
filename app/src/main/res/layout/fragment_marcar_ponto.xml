@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MarcarPonto">
+    tools:context=".Fragments.Map.MarcarPonto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -31,6 +31,7 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <EditText
+            android:imeOptions="actionDone"
             android:id="@+id/descriptionInput"
             android:layout_width="269dp"
             android:layout_height="40dp"
@@ -47,6 +48,7 @@
             app:layout_constraintTop_toBottomOf="@+id/nameInput" />
 
         <EditText
+            android:imeOptions="actionDone"
             android:id="@+id/nameInput"
             android:layout_width="269dp"
             android:layout_height="40dp"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Menu">
+    tools:context=".Fragments.Main.Menu">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,11 +15,12 @@
             android:layout_width="250dp"
             android:layout_height="55dp"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="95dp"
+            android:layout_marginTop="92dp"
             android:layout_marginEnd="80dp"
             android:text="Criar Mapa"
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,11 +29,12 @@
             android:layout_width="250dp"
             android:layout_height="55dp"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="41dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="80dp"
             android:text="Editar Mapa"
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/criarMapa" />
 
@@ -41,11 +43,12 @@
             android:layout_width="250dp"
             android:layout_height="55dp"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="37dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="80dp"
             android:text="Exportar Mapa"
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editarMapa" />
 
@@ -54,13 +57,14 @@
             android:layout_width="250dp"
             android:layout_height="55dp"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="37dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="80dp"
             android:text="Sobre"
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/exportarMapa" />
+            app:layout_constraintTop_toBottomOf="@+id/importarMapa" />
 
         <Button
             android:id="@+id/voltar"
@@ -73,6 +77,20 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/importarMapa"
+            android:layout_width="250dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="80dp"
+            android:text="Importar Mapa"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/exportarMapa" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

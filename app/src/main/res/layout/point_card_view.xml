@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/buttonEliminarPointCard"
+            android:layout_width="61dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="24dp"
+            android:backgroundTint="#DD0A0A"
+            android:visibility="gone"
+            app:icon="@android:drawable/ic_menu_delete"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/buttonSelectPointCard"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FFFFFF"
+            android:elevation="0dp"
+            android:shadowColor="#00FFFFFF"
+            android:shadowRadius="0"
+            android:stateListAnimator="@null"
+            android:visibility="visible"
+            tools:visibility="visible" />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textViewPointNameCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:text="PointName" />
+
+</androidx.cardview.widget.CardView>

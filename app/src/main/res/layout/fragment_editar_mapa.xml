@@ -2,26 +2,26 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".EditarMapa">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".Fragments.Map.EditarMapa">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/pointList"
-            android:layout_width="410dp"
-            android:layout_height="404dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="29dp"
-            app:layout_constraintBottom_toTopOf="@+id/buttonEditConfirmar"
+            android:layout_width="339dp"
+            android:layout_height="505dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginBottom="23dp"
+            app:layout_constraintBottom_toTopOf="@+id/buttonEditCancelar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewNome"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewNomeTag" />
 
         <Button
             android:id="@+id/buttonEditCancelar"
@@ -45,28 +45,32 @@
 
         <TextView
             android:id="@+id/textViewNomeTag"
-            android:layout_width="290dp"
-            android:layout_height="37dp"
+            android:layout_width="159dp"
+            android:layout_height="32dp"
             android:layout_marginStart="60dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="48dp"
             android:layout_marginEnd="60dp"
             android:text="Nome do Mapa:"
             android:textAlignment="textStart"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.333"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textViewNome"
-            android:layout_width="146dp"
-            android:layout_height="37dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="60dp"
-            android:textAlignment="viewStart"
-            android:textSize="20sp"
+        <EditText
+            android:imeOptions="actionDone"
+            android:id="@+id/editTextNomeMapa"
+            android:layout_width="170dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginBottom="41dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name"
+            app:layout_constraintBottom_toTopOf="@+id/pointList"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewNomeTag"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

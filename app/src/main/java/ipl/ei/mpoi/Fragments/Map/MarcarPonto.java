@@ -1,4 +1,4 @@
-package ipl.ei.mpoi;
+package ipl.ei.mpoi.Fragments.Map;
 
 import android.os.Bundle;
 
@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import ipl.ei.mpoi.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link NewPointFragment#newInstance} factory method to
+ * Use the {@link MarcarPonto#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NewPointFragment extends Fragment {
+public class MarcarPonto extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +26,7 @@ public class NewPointFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public NewPointFragment() {
+    public MarcarPonto() {
         // Required empty public constructor
     }
 
@@ -34,11 +36,11 @@ public class NewPointFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment NewPointFragment.
+     * @return A new instance of fragment MarcarPonto.
      */
     // TODO: Rename and change types and number of parameters
-    public static NewPointFragment newInstance(String param1, String param2) {
-        NewPointFragment fragment = new NewPointFragment();
+    public static MarcarPonto newInstance(String param1, String param2) {
+        MarcarPonto fragment = new MarcarPonto();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,6 +61,6 @@ public class NewPointFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new_point, container, false);
+        return inflater.inflate(R.layout.fragment_marcar_ponto, container, false);
     }
 }

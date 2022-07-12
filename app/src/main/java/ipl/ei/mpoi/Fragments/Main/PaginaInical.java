@@ -1,4 +1,4 @@
-package ipl.ei.mpoi;
+package ipl.ei.mpoi.Fragments.Main;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -15,6 +15,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import ipl.ei.mpoi.Activities.MainActivity;
+import ipl.ei.mpoi.R;
 import ipl.ei.mpoi.databinding.FragmentPaginaInicalBinding;
 
 public class PaginaInical extends Fragment {

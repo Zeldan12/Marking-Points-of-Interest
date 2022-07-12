@@ -1,4 +1,4 @@
-package ipl.ei.mpoi;
+package ipl.ei.mpoi.Fragments.Main;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -12,14 +12,17 @@ import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import java.io.IOException;
 
+import ipl.ei.mpoi.Activities.MainActivity;
+import ipl.ei.mpoi.R;
 import ipl.ei.mpoi.databinding.FragmentExportarMapaBinding;
-import ipl.ei.mpoi.objects.PointMap;
+import ipl.ei.mpoi.RecyclerViewAdapters.MapRecyclerViewAdapter;
+import ipl.ei.mpoi.Objects.PointMap;
+import ipl.ei.mpoi.CallBack.SelectCallBack;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -28,7 +31,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class ExportarMapa extends Fragment {
+public class ExportarMapa extends Fragment implements SelectCallBack {
 
     private @NonNull FragmentExportarMapaBinding binding;
 
@@ -45,47 +48,42 @@ public class ExportarMapa extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ((MainActivity) getActivity()).setActionBarTitle("Exportar Mapa");
+        ((MainActivity) getActivity()).setMapCardListAdapter(binding.exportarMapList, false,this::selectCallBack);
 
-        ((MainActivity) getActivity()).setMapListAdapter(binding.exportarMapList);
-
-        binding.exportarMapList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Onde pretende Exportar?");
-                /*final EditText input = new EditText(getContext());
-                input.setInputType(InputType.TYPE_CLASS_TEXT);
-                builder.setView(input);*/
-                builder.setPositiveButton("Cloud", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        postMap(((PointMap)parent.getItemAtPosition(position)));
-                    }
-                });
-                builder.setNegativeButton("Local", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        ((PointMap)parent.getItemAtPosition(position)). toXml(getActivity().getExternalMediaDirs()[0]);
-                    }
-                });
-                builder.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                builder.show();
-            }
-        }
-
-        );
         binding.button7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(ExportarMapa.this).navigate(R.id.action_exportarMapa2_to_menu);
             }
         });
+    }
+
+    @Override
+    public void selectCallBack(int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Onde pretende Exportar?");
+        builder.setPositiveButton("Cloud", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                binding.progressBarUpload.setVisibility(View.VISIBLE);
+                PointMap map = (PointMap)((MapRecyclerViewAdapter)binding.exportarMapList.getAdapter()).getItem(position);
+                postMap(map);
+            }
+        });
+        builder.setNegativeButton("Local", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                PointMap map = (PointMap)((MapRecyclerViewAdapter)binding.exportarMapList.getAdapter()).getItem(position);
+                map.toXml(getActivity().getExternalMediaDirs()[0]);
+            }
+        });
+        builder.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
     }
 
     private void postMap(PointMap pointMap){
@@ -100,6 +98,7 @@ public class ExportarMapa extends Fragment {
                 public void onFailure(Call call, IOException e) {
                     getActivity().runOnUiThread(new Runnable() {
                         public void run() {
+                            binding.progressBarUpload.setVisibility(View.GONE);
                             Toast.makeText( getContext(), "Connection Failed", Toast.LENGTH_LONG).show();
                         }
                     });
@@ -108,11 +107,13 @@ public class ExportarMapa extends Fragment {
 
                 @Override
                 public void onResponse(Call call, final Response response) throws IOException {
-                    /*if (!response.isSuccessful()) {
-                        throw new IOException("Unexpected code " + response);
-                    } else {
-                        Toast.makeText(getActivity(), "Connection failed", Toast.LENGTH_LONG).show();
-                    }*/
+
+                    getActivity().runOnUiThread(new Runnable() {
+                        public void run() {
+                            binding.progressBarUpload.setVisibility(View.GONE);
+                        }
+                    });
+
                     if(response.code() == 200){
                         getActivity().runOnUiThread(new Runnable() {
                             public void run() {
@@ -150,6 +151,7 @@ public class ExportarMapa extends Fragment {
                         builder.setNeutralButton("Substituir", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                binding.progressBarUpload.setVisibility(View.VISIBLE);
                                 MediaType XML = MediaType.parse("application/xml; charset=utf-8");
                                 RequestBody body = RequestBody.create(xmlContent,XML);
                                 OkHttpClient client = new OkHttpClient();
@@ -158,8 +160,10 @@ public class ExportarMapa extends Fragment {
 
                                     @Override
                                     public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+
                                         getActivity().runOnUiThread(new Runnable() {
                                             public void run() {
+                                                binding.progressBarUpload.setVisibility(View.GONE);
                                                 Toast.makeText( getContext(), "Mapa Atualizado", Toast.LENGTH_LONG).show();
                                             }
                                         });
@@ -170,6 +174,7 @@ public class ExportarMapa extends Fragment {
                                     public void onFailure(@NonNull Call call, @NonNull IOException e) {
                                         getActivity().runOnUiThread(new Runnable() {
                                             public void run() {
+                                                binding.progressBarUpload.setVisibility(View.GONE);
                                                 Toast.makeText( getContext(), "Connection Failed", Toast.LENGTH_LONG).show();
                                             }
                                         });
@@ -202,4 +207,6 @@ public class ExportarMapa extends Fragment {
             });
         }
     }
+
+
 }

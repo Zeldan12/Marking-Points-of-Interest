@@ -1,4 +1,4 @@
-package ipl.ei.mpoi;
+package ipl.ei.mpoi.Fragments.Main;
 
 import android.os.Bundle;
 
@@ -9,15 +9,15 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
-import org.jetbrains.annotations.NotNull;
-
-import ipl.ei.mpoi.databinding.FragmentExportarMapaBinding;
+import ipl.ei.mpoi.Activities.MainActivity;
+import ipl.ei.mpoi.R;
 import ipl.ei.mpoi.databinding.FragmentMapasBinding;
-import ipl.ei.mpoi.objects.PointMap;
+import ipl.ei.mpoi.RecyclerViewAdapters.MapRecyclerViewAdapter;
+import ipl.ei.mpoi.Objects.PointMap;
+import ipl.ei.mpoi.CallBack.SelectCallBack;
 
-public class Mapas extends Fragment {
+public class Mapas extends Fragment implements SelectCallBack {
 
     private @NonNull FragmentMapasBinding binding;
 
@@ -34,20 +34,9 @@ public class Mapas extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ((MainActivity) getActivity()).setActionBarTitle("Editar Mapa");
+        //((MainActivity) getActivity()).setActionBarTitle("Editar Mapa");
 
-        ((MainActivity) getActivity()).setMapListAdapter(binding.mapList);
-
-        binding.mapList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                /*Bundle bundle = new Bundle();
-                bundle.putSerializable("pointMap",((PointMap)parent.getItemAtPosition(position)));
-                NavHostFragment.findNavController(Mapas.this).navigate(R.id.editarMapa2,bundle);*/
-                ((MainActivity) getActivity()).changeToMapActivity(((PointMap)parent.getItemAtPosition(position)), position);
-            }
-        }
-        );
+        ((MainActivity) getActivity()).setMapCardListAdapter(binding.mapList, true, this::selectCallBack);
 
         binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,4 +46,15 @@ public class Mapas extends Fragment {
         });
     }
 
+    @Override
+    public void selectCallBack(int position) {
+        PointMap map = ((MapRecyclerViewAdapter)binding.mapList.getAdapter()).getItem(position);
+        ((MainActivity) getActivity()).changeToMapActivity(map, position);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        binding.mapList.getAdapter().notifyDataSetChanged();
+    }
 }
