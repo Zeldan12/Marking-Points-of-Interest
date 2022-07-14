@@ -3,7 +3,13 @@
     android:id="@+id/cardViewImport"
     style="?android:attr/borderlessButtonStyle"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="50dp">
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="false" />
 
     <TextView
         android:id="@+id/textViewNomeMapaImport"
@@ -11,5 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="10dp"
-        android:text="TextView" />
+        android:elevation="2dp"
+        android:text="TextView"
+        android:textColor="#FFFFFF" />
 </androidx.cardview.widget.CardView>
