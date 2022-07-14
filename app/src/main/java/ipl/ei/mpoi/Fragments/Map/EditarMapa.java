@@ -3,22 +3,23 @@ package ipl.ei.mpoi.Fragments.Map;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import ipl.ei.mpoi.Activities.MapActivity;
+import ipl.ei.mpoi.R;
 import ipl.ei.mpoi.databinding.FragmentEditarMapaBinding;
-import ipl.ei.mpoi.Objects.PointMap;
+import ipl.ei.mpoi.databinding.FragmentExportarMapaBinding;
+
 
 public class EditarMapa extends Fragment {
 
-    private @NonNull FragmentEditarMapaBinding binding;
-    private PointMap pointMap;
-
+    FragmentEditarMapaBinding binding;
     public EditarMapa() {
-        // Required empty public constructor
     }
 
     @Override
@@ -27,9 +28,10 @@ public class EditarMapa extends Fragment {
         return binding.getRoot();
     }
 
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
+        ((MapActivity)getContext()).setPointListAdapter(binding.pointList);
     }
-
-
 }

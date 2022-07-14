@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.Main.PaginaInical">
 
-    <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -27,9 +26,7 @@
             android:id="@+id/iniciar"
             android:layout_width="307dp"
             android:layout_height="64dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginEnd="80dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="32dp"
             android:text="Iniciar"
             android:textSize="25dp"
             app:layout_constraintBottom_toBottomOf="parent"

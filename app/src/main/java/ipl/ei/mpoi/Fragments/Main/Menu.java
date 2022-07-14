@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import ipl.ei.mpoi.Activities.MainActivity;
 import ipl.ei.mpoi.R;
@@ -54,7 +55,13 @@ public class Menu extends Fragment {
                 builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        ((MainActivity)getActivity()).changeToMapActivity(input.getText().toString());
+                        if(input.getText().toString().trim().equals("")){
+                            Toast.makeText(getContext(), "Nome não pode estar vazio!", Toast.LENGTH_LONG).show();
+                            dialog.cancel();
+                        }else{
+                            ((MainActivity)getActivity()).changeToMapActivity(input.getText().toString().trim());
+                        }
+
                     }
                 });
                 builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {

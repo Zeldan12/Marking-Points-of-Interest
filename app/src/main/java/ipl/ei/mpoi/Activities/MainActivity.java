@@ -236,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void importMap(String name){
-        View loader = findViewById(R.id.progressBarUpload);
+        View loader = findViewById(R.id.progressBarImport);
         loader.setVisibility(View.VISIBLE);
         Thread thread = new Thread(new Runnable() {
 

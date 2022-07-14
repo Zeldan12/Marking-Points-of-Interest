@@ -1,5 +1,6 @@
 package ipl.ei.mpoi.Objects;
 
+import android.graphics.Point;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -32,6 +33,12 @@ public class PointMap implements Parcelable, Serializable {
             this.name = name;
             points = new ArrayList<PointOfInterest>();
             return;
+    }
+
+    public PointMap(String name, ArrayList<PointOfInterest> points){
+        this.name = name;
+        this.points = points;
+        return;
     }
 
     public PointMap(File xmlFilePath, String fileName) throws ParserConfigurationException, IOException, SAXException {

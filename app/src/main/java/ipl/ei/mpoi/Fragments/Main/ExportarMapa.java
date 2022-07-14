@@ -75,6 +75,7 @@ public class ExportarMapa extends Fragment implements SelectCallBack {
             public void onClick(DialogInterface dialog, int which) {
                 PointMap map = (PointMap)((MapRecyclerViewAdapter)binding.exportarMapList.getAdapter()).getItem(position);
                 map.toXml(getActivity().getExternalMediaDirs()[0]);
+                Toast.makeText( getContext(), "Mapa Exportado!", Toast.LENGTH_LONG).show();
             }
         });
         builder.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -136,7 +137,13 @@ public class ExportarMapa extends Fragment implements SelectCallBack {
                                 builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        postMap(pointMap);
+                                        if(input.getText().toString().trim().equals("")){
+                                            Toast.makeText(getContext(), "Nome não pode estar vazio!", Toast.LENGTH_LONG).show();
+                                            dialog.cancel();
+                                        }else{
+                                            postMap(new PointMap(input.getText().toString().trim(), pointMap.getPoints()));
+                                        }
+
                                     }
                                 });
                                 builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {

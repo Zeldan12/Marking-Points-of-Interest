@@ -8,16 +8,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.location.GnssStatus;
+import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.telephony.CarrierConfigManager;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -49,16 +54,42 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private Location loc;
     private PointMap pointMap;
     private ArrayList<Marker> markers;
+    private LocationManager locationManager;
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
+    @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         Intent i = getIntent();
         pointMap = i.getParcelableExtra("PointMap");
-        requestPermissions(new String[] {Manifest.permission.MANAGE_EXTERNAL_STORAGE},3);
+        requestPermissions(new String[]{Manifest.permission.MANAGE_EXTERNAL_STORAGE}, 3);
+
         findViewById(R.id.buttonAddPoint).setEnabled(false);
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        locationManager.registerGnssStatusCallback(new GnssStatus.Callback(){
+            @Override
+            public void onStarted() {
+                super.onStarted();
+                findViewById(R.id.gpsLayout).setVisibility(View.GONE);
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
+            }
+
+            @Override
+            public void onStopped() {
+                super.onStopped();
+                findViewById(R.id.gpsLayout).setVisibility(View.VISIBLE);
+                locationManager.removeUpdates(locationListener);
+            }
+        });
+        if(!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+            findViewById(R.id.gpsLayout).setVisibility(View.VISIBLE);
+        }else{
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
+        }
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
@@ -66,11 +97,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     public void onStart() {
         super.onStart();
-        PointRecyclerViewAdapter adapter = new PointRecyclerViewAdapter(this, pointMap.getPoints(),this::selectCallBack);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        RecyclerView view = findViewById(R.id.pointList);
-        view.setLayoutManager(linearLayoutManager);
-        view.setAdapter(adapter);
+
+
         findViewById(R.id.buttonGravar).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,11 +106,20 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             }
         });
 
-        findViewById(R.id.buttonPrevious).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.buttonCancelGps).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 changeToMainActivity();
             }
+        });
+
+        findViewById(R.id.buttonPrevious).setOnClickListener(view -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Alterações serão perdidas! Tem a certeza?");
+            builder.setPositiveButton("Sim", (dialog, which) -> changeToMainActivity());
+            builder.setNegativeButton("Cancelar", (dialog, which) -> dialog.cancel());
+            builder.show();
+
         });
         findViewById(R.id.buttonPontos).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,7 +138,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         findViewById(R.id.buttonEditConfirmar).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pointMap.setName(((EditText)findViewById(R.id.editTextNomeMapa)).getText().toString());
+                if(!((EditText)findViewById(R.id.editTextNomeMapa)).getText().toString().trim().equals("")){
+                    pointMap.setName(((EditText)findViewById(R.id.editTextNomeMapa)).getText().toString().trim());
+                }
                 findViewById(R.id.editarPontosView).setVisibility(View.GONE);
                 findViewById(R.id.mapEditView).setVisibility(View.VISIBLE);
             }
@@ -157,9 +196,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         googleMap.animateCamera(cameraUpdate);
         findViewById(R.id.buttonAddPoint).setOnClickListener(this::clickAddPoint);
 
-
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
     }
 
     private LocationListener locationListener = new LocationListener() {
@@ -229,20 +265,25 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     private void clickCreatePoint(View v){
-        findViewById(R.id.addPointView).setVisibility(View.GONE);
-        findViewById(R.id.mapEditView).setVisibility(View.VISIBLE);
-        Double lat = Double.parseDouble(((TextView) findViewById(R.id.textLatitude)).getText().toString());
-        Double lng = Double.parseDouble(((TextView) findViewById(R.id.textLongitude)).getText().toString());
-        Double alt = Double.parseDouble(((TextView) findViewById(R.id.textAltitude)).getText().toString());
-        LatLng latLng = new LatLng(lat, lng);
-        String categoria = ((Spinner)findViewById(R.id.spinnerCategoria)).getSelectedItem().toString();
-        String description = ((EditText)findViewById(R.id.descriptionInput)).getText().toString();
-        String name = ((EditText)findViewById(R.id.nameInput)).getText().toString();
+        if(!((EditText)findViewById(R.id.nameInput)).getText().toString().trim().equals("")){
+            findViewById(R.id.addPointView).setVisibility(View.GONE);
+            findViewById(R.id.mapEditView).setVisibility(View.VISIBLE);
+            Double lat = Double.parseDouble(((TextView) findViewById(R.id.textLatitude)).getText().toString());
+            Double lng = Double.parseDouble(((TextView) findViewById(R.id.textLongitude)).getText().toString());
+            Double alt = Double.parseDouble(((TextView) findViewById(R.id.textAltitude)).getText().toString());
+            LatLng latLng = new LatLng(lat, lng);
+            String categoria = ((Spinner)findViewById(R.id.spinnerCategoria)).getSelectedItem().toString();
+            String description = ((EditText)findViewById(R.id.descriptionInput)).getText().toString();
+            String name = ((EditText)findViewById(R.id.nameInput)).getText().toString().trim();
 
-        PointOfInterest newPoint = new PointOfInterest(name,latLng.latitude,latLng.longitude,alt, categoria, description);
-        Marker newMarker = googleMap.addMarker(new MarkerOptions().position(latLng).title(name));
-        markers.add(newMarker);
-        pointMap.addPoint(newPoint);
+            PointOfInterest newPoint = new PointOfInterest(name,latLng.latitude,latLng.longitude,alt, categoria, description);
+            Marker newMarker = googleMap.addMarker(new MarkerOptions().position(latLng).title(name).icon(BitmapDescriptorFactory.fromResource(R.drawable.markericon)));
+            markers.add(newMarker);
+            pointMap.addPoint(newPoint);
+        }else{
+            Toast.makeText(this, "Nome do ponto não pode estar vazio!", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     private void showPontosView(){
@@ -299,13 +340,17 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         PointOfInterest poi = pointMap.getPoints().get(position);
         setUpPointWindow(poi);
         findViewById(R.id.buttonGravarPonto).setOnClickListener(view ->{
+            if(!((EditText)findViewById(R.id.nameInput)).getText().toString().trim().equals("")){
             findViewById(R.id.addPointView).setVisibility(View.GONE);
             findViewById(R.id.editarPontosView).setVisibility(View.VISIBLE);
             poi.setCategory(((Spinner)findViewById(R.id.spinnerCategoria)).getSelectedItem().toString());
             poi.setDescription (((EditText)findViewById(R.id.descriptionInput)).getText().toString());
-            poi.setName(((EditText)findViewById(R.id.nameInput)).getText().toString());
+            poi.setName(((EditText)findViewById(R.id.nameInput)).getText().toString().trim());
             markers.get(position).setTitle(poi.getName());
             ((RecyclerView)findViewById(R.id.pointList)).getAdapter().notifyDataSetChanged();
+            }else{
+                Toast.makeText(this, "Nome do ponto não pode estar vazio!", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
@@ -342,12 +387,24 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         PointOfInterest poi = pointMap.getPoints().get(position);
         setUpPointWindow(poi);
         findViewById(R.id.buttonGravarPonto).setOnClickListener(view ->{
+            if(!((EditText)findViewById(R.id.nameInput)).getText().toString().trim().equals("")){
             findViewById(R.id.addPointView).setVisibility(View.GONE);
             findViewById(R.id.mapEditView).setVisibility(View.VISIBLE);
             poi.setCategory(((Spinner)findViewById(R.id.spinnerCategoria)).getSelectedItem().toString());
             poi.setDescription (((EditText)findViewById(R.id.descriptionInput)).getText().toString());
-            poi.setName(((EditText)findViewById(R.id.nameInput)).getText().toString());
+            poi.setName(((EditText)findViewById(R.id.nameInput)).getText().toString().trim());
             markers.get(position).setTitle(poi.getName());
+            }else{
+                Toast.makeText(this, "Nome do ponto não pode estar vazio!", Toast.LENGTH_SHORT).show();
+            }
         });
     }
+
+    public void setPointListAdapter(RecyclerView view ){
+        PointRecyclerViewAdapter adapter = new PointRecyclerViewAdapter(this, pointMap.getPoints(),this::selectCallBack);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        view.setLayoutManager(linearLayoutManager);
+        view.setAdapter(adapter);
+    }
+
 }
