@@ -7,7 +7,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="50dp">
 
         <Button
             android:id="@+id/buttonEliminarPointCard"
@@ -16,6 +16,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="24dp"
             android:backgroundTint="#DD0A0A"
+            android:translationY="-2dp"
             android:visibility="gone"
             app:icon="@android:drawable/ic_menu_delete"
             tools:visibility="visible" />
@@ -24,10 +25,9 @@
             android:id="@+id/buttonSelectPointCard"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#FFFFFF"
+            android:layout_height="match_parent"
+            android:background="@android:drawable/btn_default"
             android:elevation="0dp"
-            android:shadowColor="#00FFFFFF"
             android:shadowRadius="0"
             android:stateListAnimator="@null"
             android:visibility="visible"
@@ -42,6 +42,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="10dp"
-        android:text="PointName" />
+        android:text="PointName"
+        android:textColor="#FFFFFF"
+        android:translationY="-2dp" />
 
 </androidx.cardview.widget.CardView>

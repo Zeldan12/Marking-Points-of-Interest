@@ -7,8 +7,8 @@
     android:layout_height="wrap_content">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:layout_height="50dp">
 
         <Button
             android:id="@+id/buttonEliminarMapCard"
@@ -17,6 +17,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="24dp"
             android:backgroundTint="#DD0A0A"
+            android:translationY="-2dp"
             android:visibility="gone"
             app:icon="@android:drawable/ic_menu_delete"
             app:iconPadding="0dp"
@@ -26,14 +27,12 @@
             android:id="@+id/buttonSelectMapCard"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#FFFFFF"
+            android:layout_height="match_parent"
+            android:background="@android:drawable/btn_default"
             android:elevation="0dp"
-            android:shadowColor="#00FFFFFF"
             android:shadowRadius="0"
             android:stateListAnimator="@null"
             android:visibility="visible"
-            app:iconPadding="2dp"
             tools:visibility="visible" />
 
 
@@ -46,7 +45,8 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="2dp"
         android:background="#00FFFFFF"
-        android:text="NomeMapa" />
+        android:text="NomeMapa"
+        android:textColor="#FFFFFF" />
 
     <TextView
         android:id="@+id/textViewNumeroPontos"
@@ -56,6 +56,8 @@
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="2dp"
         android:background="#00FFFFFF"
-        android:text="TextNumeroPontos" />
+        android:text="TextNumeroPontos"
+        android:textColor="#FFFFFF"
+        android:translationY="-2dp" />
 
 </androidx.cardview.widget.CardView>

@@ -2,8 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".Fragments.Map.EditarMapa">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,6 +30,7 @@
             android:layout_marginEnd="40dp"
             android:layout_marginBottom="30dp"
             android:text="Cancelar"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -37,8 +38,8 @@
             android:id="@+id/buttonEditConfirmar"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginStart="128dp"
+            android:layout_marginBottom="36dp"
             android:text="Confirmar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -59,17 +60,16 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:imeOptions="actionDone"
             android:id="@+id/editTextNomeMapa"
             android:layout_width="170dp"
             android:layout_height="40dp"
             android:layout_marginTop="48dp"
-            android:layout_marginBottom="41dp"
             android:ems="10"
+            android:imeOptions="actionDone"
             android:inputType="textPersonName"
             android:text="Name"
-            app:layout_constraintBottom_toTopOf="@+id/pointList"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/textViewNomeTag"
             app:layout_constraintTop_toTopOf="parent" />
 
