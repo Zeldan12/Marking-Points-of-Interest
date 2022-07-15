@@ -45,6 +45,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="2dp"
         android:background="#00FFFFFF"
+        android:fontFamily="@font/carter_one"
         android:text="NomeMapa"
         android:textColor="#FFFFFF" />
 
@@ -56,6 +57,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="2dp"
         android:background="#00FFFFFF"
+        android:fontFamily="@font/carter_one"
         android:text="TextNumeroPontos"
         android:textColor="#FFFFFF"
         android:translationY="-2dp" />

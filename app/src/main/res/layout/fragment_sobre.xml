@@ -18,7 +18,9 @@
             android:layout_marginTop="100dp"
             android:layout_marginEnd="50dp"
             android:layout_marginBottom="40dp"
+            android:fontFamily="@font/carter_one"
             android:text="Marking real Points of Interest\n\nVersão 1.0\n\nDesenvolvido por:\n   Filipe Sousa\n   Isac Amado\n\n                    2021/2022"
+            android:textColor="#e38850"
             android:textSize="20dp"
             app:layout_constraintBottom_toTopOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="parent"
@@ -32,12 +34,16 @@
             android:layout_marginStart="100dp"
             android:layout_marginEnd="100dp"
             android:layout_marginBottom="50dp"
+            android:backgroundTint="#5097E3"
+            android:fontFamily="@font/carter_one"
             android:text="Ok"
             android:textSize="20dp"
-            android:backgroundTint="#0009ff"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:rippleColor="#33AAAAAA"
+            app:strokeColor="#e38850"
+            app:strokeWidth="3dp" />
 
         <ImageView
             android:id="@+id/imageView"

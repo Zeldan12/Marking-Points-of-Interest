@@ -16,10 +16,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginBottom="30dp"
+            android:backgroundTint="#5097E3"
+            android:fontFamily="@font/carter_one"
             android:text="Gravar Mapa"
-            android:backgroundTint="#0009ff"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:rippleColor="#33AAAAAA"
+            app:strokeColor="#e38850"
+            app:strokeWidth="3dp" />
 
         <Button
             android:id="@+id/gravarMapa2"
@@ -27,10 +31,14 @@
             android:layout_height="47dp"
             android:layout_marginEnd="40dp"
             android:layout_marginBottom="30dp"
+            android:backgroundTint="#5097E3"
+            android:fontFamily="@font/carter_one"
             android:text="Cancelar"
-            android:backgroundTint="#0009ff"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:rippleColor="#33AAAAAA"
+            app:strokeColor="#e38850"
+            app:strokeWidth="3dp" />
 
         <TextView
             android:id="@+id/textView5"
@@ -39,7 +47,9 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
+            android:fontFamily="@font/carter_one"
             android:text="Pontos Marcados"
+            android:textColor="#e38850"
             android:textSize="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

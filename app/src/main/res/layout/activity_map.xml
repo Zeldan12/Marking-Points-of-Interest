@@ -17,10 +17,14 @@
             android:layout_height="50dp"
             android:layout_marginEnd="35dp"
             android:layout_marginBottom="20dp"
+            android:backgroundTint="#5097E3"
+            android:fontFamily="@font/carter_one"
             android:text="Voltar"
-            android:backgroundTint="#0009ff"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:rippleColor="#33AAAAAA"
+            app:strokeColor="#e38850"
+            app:strokeWidth="3dp" />
 
         <com.google.android.gms.maps.MapView
             android:id="@+id/mapView"
@@ -46,13 +50,16 @@
             android:layout_height="70dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="15dp"
+            android:backgroundTint="#5097E3"
             android:enabled="false"
-            android:backgroundTint="#0009ff"
             app:icon="@drawable/addpoint"
             app:iconTint="#00B10707"
             app:iconTintMode="add"
             app:layout_constraintBottom_toBottomOf="@+id/mapView"
             app:layout_constraintEnd_toEndOf="@+id/mapView"
+            app:rippleColor="#33AAAAAA"
+            app:strokeColor="#e38850"
+            app:strokeWidth="3dp"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
@@ -61,10 +68,14 @@
             android:layout_height="50dp"
             android:layout_marginStart="35dp"
             android:layout_marginBottom="20dp"
+            android:backgroundTint="#5097E3"
+            android:fontFamily="@font/carter_one"
             android:text="Gravar Mapa"
-            android:backgroundTint="#0009ff"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:rippleColor="#33AAAAAA"
+            app:strokeColor="#e38850"
+            app:strokeWidth="3dp" />
 
         <Button
             android:id="@+id/buttonPontos"
@@ -72,10 +83,14 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="27dp"
             android:layout_marginBottom="12dp"
+            android:backgroundTint="#5097E3"
+            android:fontFamily="@font/carter_one"
             android:text="Pontos"
-            android:backgroundTint="#0009ff"
             app:layout_constraintBottom_toTopOf="@+id/mapView"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:rippleColor="#33AAAAAA"
+            app:strokeColor="#e38850"
+            app:strokeWidth="3dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -135,7 +150,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@android:string/cancel"
-            android:backgroundTint="#0009ff"/>
+            android:backgroundTint="#5097E3"
+            app:rippleColor="#33AAAAAA"
+            app:strokeColor="#e38850"
+            app:strokeWidth="3dp"/>
 
     </LinearLayout>
 

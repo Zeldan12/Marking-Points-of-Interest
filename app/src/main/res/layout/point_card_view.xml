@@ -42,8 +42,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="10dp"
+        android:fontFamily="@font/carter_one"
         android:text="PointName"
         android:textColor="#FFFFFF"
-        android:translationY="-2dp"/>
+        android:translationY="-2dp" />
 
 </androidx.cardview.widget.CardView>

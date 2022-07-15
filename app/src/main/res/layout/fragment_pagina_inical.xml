@@ -6,17 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.Main.PaginaInical">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="124dp"
-            android:layout_height="66dp"
+            android:layout_width="200dp"
+            android:layout_height="125dp"
             android:layout_marginTop="208dp"
+            android:fontFamily="@font/carter_one"
             android:text="MPoI"
-            android:textSize="50dp"
+            android:textColor="#e38850"
+            android:textSize="80dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,12 +30,17 @@
             android:layout_width="307dp"
             android:layout_height="64dp"
             android:layout_marginBottom="32dp"
-            android:backgroundTint="#0009ff"
+            android:backgroundTint="#5097E3"
+            android:fontFamily="@font/carter_one"
             android:text="Iniciar"
             android:textSize="25dp"
+            app:cornerRadius="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:rippleColor="#33AAAAAA"
+            app:strokeColor="#e38850"
+            app:strokeWidth="4dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
