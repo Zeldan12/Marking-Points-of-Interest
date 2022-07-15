@@ -8,18 +8,6 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
-                  <entry key="editarMapa2">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="6" />
-                            <option name="y" value="189" />
-                          </Point>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
                   <entry key="exportarMapa2">
                     <value>
                       <LayoutPositions>
@@ -32,6 +20,32 @@
                         <option name="myPositions">
                           <map>
                             <entry key="action_exportarMapa2_to_menu">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="importMapa">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_importMapa_to_mapas">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_importMapa_to_menu">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -74,6 +88,11 @@
                         <option name="myPositions">
                           <map>
                             <entry key="action_menu_to_exportarMapa2">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_menu_to_importMapa">
                               <value>
                                 <LayoutPositions />
                               </value>

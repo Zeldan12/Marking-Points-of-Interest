@@ -44,6 +44,6 @@
         android:layout_marginLeft="10dp"
         android:text="PointName"
         android:textColor="#FFFFFF"
-        android:translationY="-2dp" />
+        android:translationY="-2dp"/>
 
 </androidx.cardview.widget.CardView>
